@@ -17,6 +17,6 @@ Our application will offer users a user-friendly interface to input their prefer
 We will utilize the [Statistics Canada API](https://www.statcan.gc.ca/eng/developers/wds/rest) to access demographic and economic data for Canadian provinces.
 
 ## Some possible technical challanges that might block progress 
-- one of the things that might become challanging  is  data management and processing that is gathered from an API that is changing over time
+- one of the possible challenges is data management and processing from an API that is updating over time
 
 
