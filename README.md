@@ -2,7 +2,7 @@
 
 **Statistics Canada API:** [GitHub Repository](https://github.com/sdmx-twg/sdmx-rest/tree/master/api)
 
-**Project Discord:** [Join our Discord community](https://discord.gg/Vnf28JWz)
+**Project Discord:** [ Discord ](https://discord.gg/Vnf28JWz)
 
 ## Problem Domain
 
