@@ -1,6 +1,6 @@
 # CSC207 Project: Canada Province Comparison Tool
 
-**Statistics Canada API:** [GitHub Repository](https://github.com/sdmx-twg/sdmx-rest/tree/master/api)
+**Statistics Canada API:** [https://www.statcan.gc.ca/en/microdata/api]
 
 **Project Discord:** [ Discord ](https://discord.gg/Vnf28JWz)
 
