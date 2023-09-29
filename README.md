@@ -21,9 +21,14 @@ We will utilize the [Statistics Canada API](https://www.statcan.gc.ca/eng/develo
 
 <img width="878" alt="Screen Shot 2023-09-28 at 9 13 40 PM" src="https://github.com/kiarashkianid/CSC207-project/assets/145369644/dba9a1f0-23f4-4106-a80e-f5546d555718">
 
+## Example Java Code Calling the API
+
+Located in: "src/main/java/api/StatsCanada.java". Modelled after the Grade API lab activity, using OkHttp.
 
 
-## Some possible technical challanges that might block progress 
+## Some possible technical challenges that might block progress
+- Not exactly a technical issue; our 4th member, Matthew MacQuarrie-Cottle has been unable to join the repository as a collaborator yet, we will get this sorted on Monday. 
 - one of the possible challenges is data management and processing from an API that is updating over time
+- Learning curve of extracting the data from the API & getting it into IntelliJ (our test API sample call only checks for if the call was successful; we aren't quite sure how to extract the data yet.)
 
 
