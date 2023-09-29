@@ -16,6 +16,13 @@ Our application will offer users a user-friendly interface to input their prefer
 
 We will utilize the [Statistics Canada API](https://www.statcan.gc.ca/eng/developers/wds/rest) to access demographic and economic data for Canadian provinces.
 
+## Example Calls to API and Data Output
+<img width="1494" alt="Screen Shot 2023-09-28 at 9 13 16 PM" src="https://github.com/kiarashkianid/CSC207-project/assets/145369644/e31685ef-1685-4a46-a35a-ec46db51a515">
+
+<img width="878" alt="Screen Shot 2023-09-28 at 9 13 40 PM" src="https://github.com/kiarashkianid/CSC207-project/assets/145369644/dba9a1f0-23f4-4106-a80e-f5546d555718">
+
+
+
 ## Some possible technical challanges that might block progress 
 - one of the possible challenges is data management and processing from an API that is updating over time
 
