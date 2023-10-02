@@ -6,12 +6,11 @@
 
 ## Problem Domain
 
-Our team aims to develop an application that assists users interested in immigrating to Canada by providing a comparison tool for different provinces. This tool is based on a model that calculates immigration scores for each province using data from the Statistics Canada API.
+Our team aims to develop an application that assists users interested in immigratation to a particular city to compare the weather of their cities of interest  This tool is based on a model that calculates ideal weather  scores for each city of interest using data from the openWeather API.
 
 ## Application Description
 
-Our application will offer users a user-friendly interface to input their preferences, including importance scores for multiple variables such as the economic status of the province, education, healthcare, and more, for immigration to Canada. The application will then gather relevant data from the Statistics Canada API to calculate an immigration score for each province. These scores will be used to provide recommendations on which province might be the best fit for the user's needs.
-
+Our application will offer users a user-friendly interface to input their current cities of interest for immigration and provide them with a comparison tool based on their own preferences for perfect weather conditions (weighting variables that form the basis of our calculation of the perfect weather). The application will then gather relevant data from the OpenWeather API to calculate a perfect weather score for each city of interest and display it graphically based on our existing model in a way that is meaningful to the user. These scores will be used to offer recommendations on which one of the cities of interest might be the best fit for the user's needs. Additionally, this application will keep track of user searches, allowing them to access and modify their older preferences through a user login functionality.
 ## API Documentation
 
 We will utilize the [Statistics Canada API](https://www.statcan.gc.ca/eng/developers/wds/rest) to access demographic and economic data for Canadian provinces.
