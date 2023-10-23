@@ -1,4 +1,6 @@
 public class CalculateWeatherScore {
+
+
     public static int calculateOverallWeatherScore(int ideal_temp, int ideal_humidity,int ideal_precipitation,int userTempPreference, int userHumidityPreference, int userPrecipitationPreference, double actualTemperature, double actualHumidity, double actualPrecipitation) {
 
         // Calculate temperature score using user preference score , ideal temp score and the actual score from API
