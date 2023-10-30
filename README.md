@@ -1,6 +1,8 @@
-# CSC207 Project: Canada Province Comparison Tool
+# CSC207 Project: City Weather Comparison Tool
 
-**Statistics Canada API:** [https://www.statcan.gc.ca/en/microdata/api]
+**OpenWeather API:** [[https://www.statcan.gc.ca/en/microdata/api](https://openweathermap.org/)]
+
+**OpenWeatherAPI Postman Link** https://www.postman.com/alex-postman-workspace/workspace/openweather-api/overview
 
 **Project Discord:** [ Discord ](https://discord.gg/Vnf28JWz)
 
@@ -17,7 +19,7 @@ We will utilize the [Statistics Canada API](https://www.statcan.gc.ca/eng/develo
 
 ## Example Calls to API and Data Output
 
-<img width="1462" alt="Screenshot 2023-10-06 at 1 58 26 PM" src="https://github.com/kiarashkianid/CSC207-project/assets/145369644/1644554c-6b88-47d1-942d-f1b7f3be0b6f">
+<img width="960" alt="API-Test-Call" src="https://github.com/kiarashkianid/Weather-Wanderer/assets/144408744/bc8d3e0d-86d2-4bae-8e56-8cbeff28fcc6">
 
 
 ## Example Java Code Calling the API

@@ -1,22 +1,24 @@
-package data_access;
+package api;
 
 
 import okhttp3.*;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
 
-public class StatsCanada {
-    public boolean getDataSuccess() {
+public class OpenWeatherAPI {
+    public Object getRawData() {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         Request request = new Request.Builder()
-                .url("https://www.postman.com/postman/workspace/postman-open-technologies-data-and-ai/request/21577788-431f933c-74f0-42bc-9939-b14de7f6171d")
+                .url("https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=0767c0009ec4786d0e44c681f8159492")
                 .build();
         try {
             Response response = client.newCall(request).execute();
             System.out.println(response);
-            return response.isSuccessful();
+            JSONObject responseBody = new JSONObject(response.body().string());
+            return responseBody;
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -24,8 +26,8 @@ public class StatsCanada {
     }
 
     public static void main(String[] args) {
-        StatsCanada statsCanada = new StatsCanada();
-        System.out.println(statsCanada.getDataSuccess());
+        OpenWeatherAPI openWeatherAPI = new OpenWeatherAPI();
+        System.out.println(openWeatherAPI.getRawData());
 
     }
 }
