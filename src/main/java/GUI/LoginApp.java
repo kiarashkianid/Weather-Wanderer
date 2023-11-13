@@ -77,7 +77,7 @@ public class LoginApp {
         logoutButton.setEnabled(false);
 
         // Load and set your GIF file as the background
-        ImageIcon backgroundIcon = new ImageIcon("C:\\Users\\Kiarash\\IdeaProjects\\CSC207-project\\src\\main\\java\\GUI\\loginPageBackground.gif");
+        ImageIcon backgroundIcon = new ImageIcon("C:\\Users\\Kiarash\\IdeaProjects\\Weather-Wanderer\\src\\main\\java\\GUI\\loginPageBackground.gif");
         backgroundLabel.setIcon(backgroundIcon);
         backgroundLabel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
         layeredPane.add(backgroundLabel, JLayeredPane.DEFAULT_LAYER);
