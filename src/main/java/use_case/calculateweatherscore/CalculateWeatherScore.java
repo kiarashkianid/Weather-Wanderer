@@ -1,3 +1,5 @@
+package use_case.calculateweatherscore;
+
 public class CalculateWeatherScore {
 
 
