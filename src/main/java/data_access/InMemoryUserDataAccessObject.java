@@ -1,4 +1,13 @@
 package data_access;
 
-public class InMemoryUserDataAccessObject {
+import entity.GuestUser;
+import entity.User;
+import use_case.guestuser.GuestDataAccessInterface;
+
+public class InMemoryUserDataAccessObject implements GuestDataAccessInterface {
+    private User current_user = null;
+    @Override
+    public void save(GuestUser user) {
+        current_user = user;
+    }
 }

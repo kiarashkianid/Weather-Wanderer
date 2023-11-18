@@ -2,7 +2,7 @@ package entity;
 
 import java.util.List;
 
-public class GuestUser {
+public class GuestUser implements User{
     private int userID;
     private String name;
     private String username;
