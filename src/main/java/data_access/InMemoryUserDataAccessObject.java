@@ -7,7 +7,7 @@ import use_case.guestuser.GuestDataAccessInterface;
 public class InMemoryUserDataAccessObject implements GuestDataAccessInterface {
     private User current_user = null;
     @Override
-    public void save(GuestUser user) {
+    public void saveGuest(GuestUser user) {
         current_user = user;
     }
 }
