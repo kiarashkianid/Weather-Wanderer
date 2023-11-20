@@ -12,6 +12,7 @@ public class City {
         this.longitutde = longitutde;
         this.latitude = latitude;
     }
-
-
+    public String getName() {
+        return name;
+    }
 }

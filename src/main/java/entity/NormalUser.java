@@ -2,8 +2,6 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class NormalUser implements User {
     private int userID;
@@ -12,7 +10,7 @@ public class NormalUser implements User {
     private WeatherPref weatherPreference;
     private List<City> cityList;
 
-    private static List<NormalUser> savedCities = new ArrayList<>();
+    private static List<NormalUser> userList = new ArrayList<>();
 
     public NormalUser(int userID, String username, String password, WeatherPref weatherPreference, List<City> cityList)
     {
@@ -22,7 +20,7 @@ public class NormalUser implements User {
         this.weatherPreference = weatherPreference;
         this.cityList = cityList;
 
-        savedCities.add(this);
+        userList.add(this);
     }
 
     public NormalUser(int userID, String username, String password)
@@ -33,18 +31,26 @@ public class NormalUser implements User {
         this.weatherPreference = null;
         this.cityList = null;
 
-        savedCities.add(this);
+        userList.add(this);
     }
 
 
 
     @Override
-    public String getName() {
-        return null;
+    public String getUsername() {
+        return this.username;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return this.password;
+    }
+
+    public List<City> getCityList() {
+        return cityList;
+    }
+
+    public int getUserID() {
+        return userID;
     }
 }
