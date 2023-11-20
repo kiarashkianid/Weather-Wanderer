@@ -8,11 +8,11 @@ public class SignUpInputData {
 
     final private int userID;
 
-    public SignUpInputData(String username, String password, String repeatPassword, int userID) {
+    public SignUpInputData(String username, String password, String repeatPassword) {
         this.username = username;
         this.password = password;
         this.repeatPassword = repeatPassword;
-        this.userID = userID;
+        this.userID = (int)Math.floor(Math.random() *(1000 - 1 + 1) + 1); //giving userID between 1-1000
     }
 
     String getUsername() {
