@@ -14,6 +14,7 @@ public class City {
         this.latitude = latitude;
         this.weatherScore=null;
     }
-
-
+    public String getName() {
+        return name;
+    }
 }
