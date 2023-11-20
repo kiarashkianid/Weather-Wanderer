@@ -2,8 +2,6 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class NormalUser implements User {
     private int userID;
@@ -39,12 +37,20 @@ public class NormalUser implements User {
 
 
     @Override
-    public String getName() {
-        return null;
+    public String getUsername() {
+        return this.username;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return this.password;
+    }
+
+    public List<City> getCityList() {
+        return cityList;
+    }
+
+    public int getUserID() {
+        return userID;
     }
 }

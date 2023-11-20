@@ -13,12 +13,12 @@ public class FileUserDataAccessObject {
         String txtfile = "savedUsers.txt";
         try {
             FileWriter fileWriter = new FileWriter(txtfile);
-            for (NormalUser user: savedCities)
+            for (NormalUser user: userList)
             {
-                fileWriter.write(Integer.toString(user.userID) + " " + user.username);
-                for (City city: user.cityList)
+                fileWriter.write(Integer.toString(user.getUserID()) + " " + user.getUsername());
+                for (City city: user.getCityList())
                 {
-                    fileWriter.write(city.name);
+                    fileWriter.write(city.getName());
                 }
             }
             fileWriter.close();
