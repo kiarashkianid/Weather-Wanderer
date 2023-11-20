@@ -8,4 +8,5 @@ public class WeatherScore {
         this.weather_score = calculated_score;
     }
 
+
 }
