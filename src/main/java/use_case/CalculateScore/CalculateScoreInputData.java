@@ -1,40 +1,27 @@
 package use_case.CalculateScore;
 
+import entity.WeatherData;
 import entity.WeatherPref;
 
 // Updated Input data class used by the Controller
 public class CalculateScoreInputData {
-    private WeatherPref userPreferences;
-    private double actualTemperature;
-    private double actualHumidity;
-    private double actualPrecipitation;
+    private final WeatherPref userPreferences;
+    private final WeatherData weatherData;
 
     public CalculateScoreInputData(
             WeatherPref userPreferences,
-            double actualTemperature,
-            double actualHumidity,
-            double actualPrecipitation
+            WeatherData weatherData
     ) {
         this.userPreferences = userPreferences;
-        this.actualTemperature = actualTemperature;
-        this.actualHumidity = actualHumidity;
-        this.actualPrecipitation = actualPrecipitation;
+        this.weatherData = weatherData;
+
     }
 
     public WeatherPref getUserPreferences() {
         return userPreferences;
     }
 
-    public double getActualTemperature() {
-        return actualTemperature;
-    }
+    public WeatherData getWeatherData() { return weatherData;}
 
-    public double getActualHumidity() {
-        return actualHumidity;
-    }
-
-    public double getActualPrecipitation() {
-        return actualPrecipitation;
-    }
 }
 
