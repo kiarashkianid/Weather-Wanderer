@@ -1,6 +1,7 @@
 package use_case.normaluser.SignUp;
 import app.NormalUserFactory;
 import entity.User;
+import java.lang.Math;
 
 import java.time.LocalDateTime;
 
@@ -27,9 +28,8 @@ public class SignUpInteractor implements SignUpInputBoundary{
         } else {
 
             LocalDateTime now = LocalDateTime.now();
-            User user = NormalUserFactory.create(signupInputData.getUsername(), signupInputData.getPassword());
+            User user = NormalUserFactory.create((int)Math.floor(Math.random() *(1000 - 1 + 1) + 1) ,signupInputData.getUsername(), signupInputData.getPassword());
             userDataAccessObject.save(user);
-
             SignUpOutputData signupOutputData = new SignUpOutputData(user.getName(), now.toString(), false);
             userPresenter.prepareSuccessView(signupOutputData);
         }
