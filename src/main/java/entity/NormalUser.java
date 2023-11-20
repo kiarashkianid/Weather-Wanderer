@@ -12,7 +12,7 @@ public class NormalUser implements User {
     private WeatherPref weatherPreference;
     private List<City> cityList;
 
-    private static List<NormalUser> savedCities = new ArrayList<>();
+    private static List<NormalUser> userList = new ArrayList<>();
 
     public NormalUser(int userID, String username, String password, WeatherPref weatherPreference, List<City> cityList)
     {
@@ -22,7 +22,7 @@ public class NormalUser implements User {
         this.weatherPreference = weatherPreference;
         this.cityList = cityList;
 
-        savedCities.add(this);
+        userList.add(this);
     }
 
     public NormalUser(int userID, String username, String password)
@@ -33,7 +33,7 @@ public class NormalUser implements User {
         this.weatherPreference = null;
         this.cityList = null;
 
-        savedCities.add(this);
+        userList.add(this);
     }
 
 
