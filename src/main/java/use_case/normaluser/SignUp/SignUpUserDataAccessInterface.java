@@ -1,9 +1,12 @@
 package use_case.normaluser.SignUp;
 
-import entity.User;
+import entity.NormalUser;
+
 
 public interface SignUpUserDataAccessInterface {
     boolean existsByName(String username);
 
-    void save(User user);
+    void save(NormalUser user);
+
+
 }

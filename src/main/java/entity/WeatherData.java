@@ -1,6 +1,6 @@
 package entity;
 
-public class WeatherData {
+public record WeatherData(double windSpeed, double humidity, double temperature) {
     private static final double MIN_WIND_SPEED = 1;
     private static final double MAX_WIND_SPEED = 20;
     private static final double MIN_HUMIDITY = 0;
@@ -8,9 +8,9 @@ public class WeatherData {
     private static final double MIN_TEMPERATURE = -40;
     private static final double MAX_TEMPERATURE = 40;
 
-    private final double windSpeed;
-    private final double humidity;
-    private final double temperature;
+    private static final double IDEAL_TEMP = 23;
+    private static final double IDEAL_HUMIDIDTY = 40;
+    private static final double IDEAL_WINDSPEED = 12;
 
     public WeatherData(double windSpeed, double humidity, double temperature) {
         // Validate and set wind speed within the specified range
@@ -32,15 +32,18 @@ public class WeatherData {
         this.temperature = temperature;
     }
 
-    public double getHumidity() {
-        return humidity;
+
+    public double getIdealTemp() {
+        return IDEAL_TEMP;
     }
 
-    public double getWindSpeed() {
-        return windSpeed;
+    public double getIdealHumidity() {
+        return IDEAL_HUMIDIDTY;
     }
 
-    public double getTemperature() {
-        return temperature;
+    public double getIdealWindspeed() {
+        return IDEAL_WINDSPEED;
     }
+
+
 }

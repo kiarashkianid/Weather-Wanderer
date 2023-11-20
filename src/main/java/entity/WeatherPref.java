@@ -1,6 +1,7 @@
 package entity;
 
 public class WeatherPref {
+
     private static final int MIN_TEMP_PREFERENCE = -40;
     private static final int MAX_TEMP_PREFERENCE = 40;
     private static final int MIN_HUMIDITY_PREFERENCE = 0;
@@ -8,12 +9,12 @@ public class WeatherPref {
     private static final int MIN_WIND_SPEED_PREFERENCE = 1;
     private static final int MAX_WIND_SPEED_PREFERENCE = 20;
 
-    private int userTempPreference;
-    private int userHumidityPreference;
-    private int userWindSpeedPreference;
-    private int userTempPreferenceScore;
-    private int userHumidityPreferenceScore;
-    private int userWindSpeedPreferenceScore;
+    private final int userTempPreference;
+    private final int userHumidityPreference;
+    private final int userWindSpeedPreference;
+    private final int userTempPreferenceScore;
+    private final int userHumidityPreferenceScore;
+    private final int userWindSpeedPreferenceScore;
 
     public WeatherPref(int userHumidityPreference, int userTempPreference, int userWindSpeedPreference,
                        int userTempPreferenceScore, int userHumidityPreferenceScore, int userWindSpeedPreferenceScore) {
@@ -40,4 +41,23 @@ public class WeatherPref {
         this.userWindSpeedPreferenceScore = userWindSpeedPreferenceScore;
         this.userTempPreferenceScore = userTempPreferenceScore;
     }
+
+    public int getUserTempPreference() {
+        return this.userTempPreference;
+    }
+
+    public int getUserHumidityPreference() {
+        return this.userHumidityPreference;
+    }
+
+    public int getUserWindSpeedPreference(){
+        return this.userWindSpeedPreference;
+    }
+
+    public int getUserTempPreferenceScore(){return this.userTempPreferenceScore;}
+    public int getUserHumidityPreferenceScore(){return this.userHumidityPreferenceScore;}
+
+    public int getUserWindSpeedPreferenceScore(){return this.userWindSpeedPreferenceScore;}
+
+
 }
