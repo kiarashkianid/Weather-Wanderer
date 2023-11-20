@@ -1,19 +1,20 @@
 package interface_adapter.choose_preferences;
 
 import interface_adapter.ViewManagerModel;
-import use_case.calculateweatherscore.CalculateWeatherScore;
+import use_case.CalculateScore.CalculateWeatherScore;
 import use_case.choosepreferences.ChooseOutputBoundary;
 import use_case.choosepreferences.ChooseOutputData;
+import interface_adapter.calculate_score.CalculateScoreViewModel;
 
 public class ChoosePresenter implements ChooseOutputBoundary{
     private final ViewManagerModel viewManagerModel;
 
     private final ChooseViewModel chooseViewModel;
 
-    private final CalculateWeatherScoreViewModel calculateWeatherScoreViewModel;
+    private final CalculateScoreViewModel calculateWeatherScoreViewModel;
 
     public ChoosePresenter(ViewManagerModel viewManagerModel, ChooseViewModel chooseViewModel,
-                           CalculateWeatherScoreViewModel calculateWeatherScoreViewModel){
+                           CalculateScoreViewModel calculateWeatherScoreViewModel){
         this.viewManagerModel = viewManagerModel;
         this.chooseViewModel = chooseViewModel;
         this.calculateWeatherScoreViewModel = calculateWeatherScoreViewModel;

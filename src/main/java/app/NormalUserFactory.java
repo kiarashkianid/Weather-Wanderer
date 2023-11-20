@@ -13,9 +13,10 @@ public class NormalUserFactory { //creates instances of NormalUser object
 
         return null;
     }
+    /*
     public static NormalUserView create()
     {
 
         return null;
-    };
+    };*/
 }

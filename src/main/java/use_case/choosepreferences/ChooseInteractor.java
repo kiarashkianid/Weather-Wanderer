@@ -3,7 +3,7 @@ package use_case.choosepreferences;
 
 import app.ChoosePreferencesFactory;
 
-public class ChooseInteractor {
+public class ChooseInteractor {/*
     // If User_ID == "GUEST_USER", need InMemoryDataAcessObject, which stores a User Type UserInterface
     // which can either be a normal user or a guest user.
     // Both these have their preferences.
@@ -30,4 +30,5 @@ public class ChooseInteractor {
         // Then save that WeatherPref entity
         chooseDataAccessObject.save();
     }
+    */
 }
