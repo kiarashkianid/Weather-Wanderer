@@ -26,6 +26,5 @@ public class FileUserDataAccessObject {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
