@@ -1,6 +1,5 @@
 package app;
 
-import View.NormalUserView;
 import entity.NormalUser;
 import interface_adapter.normal_user.NormalUserController;
 

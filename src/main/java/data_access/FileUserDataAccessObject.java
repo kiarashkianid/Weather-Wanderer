@@ -2,6 +2,7 @@ package data_access;
 
 import entity.City;
 import entity.NormalUser;
+import data_access.UserListGateway;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,7 +14,7 @@ public class FileUserDataAccessObject {
         String txtfile = "savedUsers.txt";
         try {
             FileWriter fileWriter = new FileWriter(txtfile);
-            for (NormalUser user: userList)
+            for (NormalUser user: UserListGateway.getUserList())
             {
                 fileWriter.write(Integer.toString(user.getUserID()) + " " + user.getUsername());
                 for (City city: user.getCityList())

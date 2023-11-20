@@ -10,8 +10,6 @@ public class NormalUser implements User {
     private WeatherPref weatherPreference;
     private List<City> cityList;
 
-    private static List<NormalUser> userList = new ArrayList<>();
-
     public NormalUser(int userID, String username, String password, WeatherPref weatherPreference, List<City> cityList)
     {
         this.userID = userID;
@@ -20,7 +18,6 @@ public class NormalUser implements User {
         this.weatherPreference = weatherPreference;
         this.cityList = cityList;
 
-        userList.add(this);
     }
 
     public NormalUser(int userID, String username, String password)
@@ -31,7 +28,6 @@ public class NormalUser implements User {
         this.weatherPreference = null;
         this.cityList = null;
 
-        userList.add(this);
     }
 
 
