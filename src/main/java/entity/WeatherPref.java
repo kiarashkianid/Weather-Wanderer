@@ -1,6 +1,7 @@
 package entity;
 
 public class WeatherPref {
+
     private static final int MIN_TEMP_PREFERENCE = -40;
     private static final int MAX_TEMP_PREFERENCE = 40;
     private static final int MIN_HUMIDITY_PREFERENCE = 0;

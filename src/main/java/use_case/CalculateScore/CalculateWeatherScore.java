@@ -1,4 +1,4 @@
-package use_case.calculateweatherscore;
+package use_case.CalculateScore;
 
 public class CalculateWeatherScore {
 
