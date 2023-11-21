@@ -2,7 +2,6 @@ package use_case.normaluser.SignUp;
 
 public class SignUpOutputData {
 
-
     private final String username;
     private String creationTime;
 
