@@ -1,5 +1,7 @@
 package GUI;
 
+import interface_adapter.choose_preferences.ChooseState;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +16,8 @@ public class GuestPage {
     private JTextField factor2Field;
     private JTextField factor3Field;
 
+    private JButton caclculateButton;
+
     private ArrayList<String> addedCities = new ArrayList<>();
 
     public GuestPage() {
@@ -26,7 +30,7 @@ public class GuestPage {
 
         // Create and add the city input components
         JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(2, 1));
+        inputPanel.setLayout(new GridLayout(3, 1));
 
         cityTextField = new JTextField(20);
         JButton addButton = new JButton("Add City");
@@ -45,6 +49,32 @@ public class GuestPage {
         inputPanel.add(cityTextField);
         inputPanel.add(addButton);
 
+        // Create & add the calculateScores button
+        JPanel calculatePanel = new JPanel();
+        calculatePanel.setLayout(new GridLayout(1, 1));
+
+        caclculateButton = new JButton("Calculate Weather Scores");
+
+        caclculateButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(caclculateButton)) {
+                            // TODO: On success, execute chooseController & execute calculateWeatherScore ( i think)
+                            if (!addedCities.isEmpty() && !factor1Field.getText().isEmpty() &&
+                                    !factor2Field.getText().isEmpty() && !factor3Field.getText().isEmpty())
+                                System.out.println("Button Hit Successful");
+                            else {
+                                System.out.println("Button Hit Unsuccessful, Preferences Unfilled!");
+                            }
+                        }
+                    }
+                }
+        );
+
+        calculatePanel.add(caclculateButton);
+
+
         // Create and add the score entry components
         JPanel scorePanel = new JPanel();
         scorePanel.setLayout(new GridLayout(4, 1));
@@ -60,14 +90,15 @@ public class GuestPage {
         scorePanel.add(new JLabel("How important is the precipitation to you between 1 and 100 ? \""));
         scorePanel.add(factor3Field);
 
-        guestPanel.add(inputPanel, BorderLayout.NORTH);
-        guestPanel.add(scorePanel, BorderLayout.CENTER);
-
         // Create and add the list of added cities
         citiesPanel = new JPanel();
         citiesPanel.setLayout(new BoxLayout(citiesPanel, BoxLayout.Y_AXIS));
 
-        guestPanel.add(new JScrollPane(citiesPanel), BorderLayout.SOUTH);
+        inputPanel.add(new JScrollPane(citiesPanel), BorderLayout.SOUTH);
+
+        guestPanel.add(inputPanel, BorderLayout.NORTH);
+        guestPanel.add(scorePanel, BorderLayout.CENTER);
+        guestPanel.add(calculatePanel, BorderLayout.SOUTH);
 
         guestFrame.add(guestPanel);
         guestFrame.setVisible(true);

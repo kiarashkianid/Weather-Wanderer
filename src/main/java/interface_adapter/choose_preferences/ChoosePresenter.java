@@ -1,6 +1,7 @@
 package interface_adapter.choose_preferences;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.calculateweatherscore.CalculateWeatherScoreViewModel;
 import use_case.calculateweatherscore.CalculateWeatherScore;
 import use_case.choosepreferences.ChooseOutputBoundary;
 import use_case.choosepreferences.ChooseOutputData;
