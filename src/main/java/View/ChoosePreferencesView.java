@@ -58,7 +58,11 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
                                     !factor2Field.getText().isEmpty() && !factor3Field.getText().isEmpty())
                                 chooseController.execute(currentState.getTemperature(), currentState.getHumidity(),
                                     currentState.getWindSpeed(), currentState.getCityList());
-
+                            else {
+                                JOptionPane.showMessageDialog(null, "Not all Preferences Have" +
+                                        " Been Chosen.\nPlease Input Your Preferences and Try Again.");
+                            }
+                            // TODO: execute calculateWeatherScore ( I THINK )
                         }
                     }
                 }
@@ -68,10 +72,10 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
 
         // Create and add the city input components
         JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(2, 1));
+        inputPanel.setLayout(new GridLayout(3, 1));
 
         cityTextField = new JTextField(20);
-        JButton addButton = new JButton("Add City");
+        JButton addButton = new JButton("Add City Using The Following Format: city,country");
 
         addButton.addActionListener(new ActionListener() {
             @Override

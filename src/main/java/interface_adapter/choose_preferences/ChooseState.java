@@ -57,4 +57,6 @@ public class ChooseState {
         this.cityList = cityList;
     }
 
+    public void setPreferencesError(String error) {
+    }
 }

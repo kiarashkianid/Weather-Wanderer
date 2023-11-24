@@ -12,4 +12,7 @@ public class ChooseViewModel extends ViewModel {
     public void setState(ChooseState state) {
         this.state = state;
     }
+
+    public void firePropertyChanged() {
+    }
 }
