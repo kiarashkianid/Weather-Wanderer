@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -18,17 +20,20 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
 
     private final ChooseViewModel chooseViewModel;
     private JFrame choosePreferencesFrame;
-    private JPanel citiesPanel;
-    private JTextField cityTextField;
-    private JTextField factor1Field;
-    private JTextField factor2Field;
-    private JTextField factor3Field;
+    private final JPanel citiesPanel;
+    private final JTextField cityTextField;
+    private final JTextField factor1Field;
+    private final JTextField preference1Field;
+    private final JTextField factor2Field;
+    private final JTextField preference2Field;
+    private final JTextField factor3Field;
+    private final JTextField preference3Field;
 
     // This will the button that saves the preferences & moves onto the next View, being calculateWeatherScores.
 
-    private JButton caclculateButton;
+    private final JButton caclculateButton;
 
-    private ArrayList<String> addedCities = new ArrayList<>();
+    private final ArrayList<String> addedCities = new ArrayList<>();
 
     public ChoosePreferencesView(ChooseController chooseController, ChooseViewModel chooseViewModel) {
         this.chooseController = chooseController;
@@ -53,11 +58,22 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
                     public void actionPerformed(ActionEvent e) {
                         if (e.getSource().equals(caclculateButton)) {
                             ChooseState currentState = chooseViewModel.getState();
-                            // TODO: On success, execute chooseController & execute calculateWeatherScore ( i think)
+                            // TODO: On success, execute chooseController
+                            currentState.setTemperature(Integer.parseInt(preference1Field.getText()));
+                            currentState.setHumidity(Integer.parseInt(preference2Field.getText()));
+                            currentState.setWindSpeed(Integer.parseInt(preference3Field.getText()));
+                            currentState.setTemperatureWeight(Integer.parseInt(factor1Field.getText()));
+                            currentState.setHumidityWeight(Integer.parseInt(factor2Field.getText()));
+                            currentState.setWindSpeedWeight(Integer.parseInt(factor3Field.getText()));
+                            currentState.setCityList(addedCities);
                             if (!addedCities.isEmpty() && !factor1Field.getText().isEmpty() &&
-                                    !factor2Field.getText().isEmpty() && !factor3Field.getText().isEmpty())
-                                chooseController.execute(currentState.getTemperature(), currentState.getHumidity(),
-                                    currentState.getWindSpeed(), currentState.getCityList());
+                                    !factor2Field.getText().isEmpty() && !factor3Field.getText().isEmpty() &&
+                                    !preference1Field.getText().isEmpty() && !preference2Field.getText().isEmpty() &&
+                                    !preference3Field.getText().isEmpty())
+                                chooseController.execute(currentState.getTemperature(),
+                                        currentState.getTemperatureWeight(), currentState.getHumidity(),
+                                        currentState.getHumidityWeight(), currentState.getWindSpeed(),
+                                        currentState.getWindSpeedWeight(), currentState.getCityList());
                             else {
                                 JOptionPane.showMessageDialog(null, "Not all Preferences Have" +
                                         " Been Chosen.\nPlease Input Your Preferences and Try Again.");
@@ -94,18 +110,28 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
 
         // Create and add the score entry components
         JPanel scorePanel = new JPanel();
-        scorePanel.setLayout(new GridLayout(4, 1));
+        scorePanel.setLayout(new GridLayout(6, 1));
 
-        factor1Field = new JTextField(10);
-        factor2Field = new JTextField(10);
-        factor3Field = new JTextField(10);
+        preference1Field = new JTextField(5);
+        preference2Field = new JTextField(5);
+        preference3Field = new JTextField(5);
+        factor1Field = new JTextField(5);
+        factor2Field = new JTextField(5);
+        factor3Field = new JTextField(5);
 
-        scorePanel.add(new JLabel("How important is the temperature to you between 1 and 100 ? "));
+        scorePanel.add(new JLabel("What is your ideal Temperature between -40 to 40 degrees Celsius? "));
+        scorePanel.add(preference1Field);
+        scorePanel.add(new JLabel("What is your ideal Humidity from 1% to 100% ? \""));
+        scorePanel.add(preference2Field);
+        scorePanel.add(new JLabel("What is your ideal WindSpeed between 1 and 20 meters/second ? \""));
+        scorePanel.add(preference3Field);
+        scorePanel.add(new JLabel("How important is the Temperature to you between 1% and 100% ? "));
         scorePanel.add(factor1Field);
-        scorePanel.add(new JLabel("How important is the humidity to you between 1 and 100 ? \""));
+        scorePanel.add(new JLabel("How important is the Humidity to you between 1% and 100% ? \""));
         scorePanel.add(factor2Field);
-        scorePanel.add(new JLabel("How important is the precipitation to you between 1 and 100 ? \""));
+        scorePanel.add(new JLabel("How important is the WindSpeed to you between 1% and 100% ? \""));
         scorePanel.add(factor3Field);
+
 
         // Create and add the list of added cities
         citiesPanel = new JPanel();

@@ -30,10 +30,14 @@ public class ChooseInteractor implements ChooseInputBoundary{
 
         //Success case:
         // TODO: If Kiarash wants a User as their input for calculateWeatherScore, then we need to change that using a User Factory.
-        chooseDataAccessObject.savePreferences(chooseInputData.getTemperature(), chooseInputData.getHumidity(),
-                chooseInputData.getWindSpeed(), chooseInputData.getCityList());
-        ChooseOutputData chooseOutputData = new ChooseOutputData(chooseInputData.getTemperature(), chooseInputData.getHumidity(),
-                chooseInputData.getWindSpeed(), chooseInputData.getCityList());
+        // First create WeatherPref Entity
+        WeatherPref weatherPref = new WeatherPref(chooseInputData.getTemperature(), chooseInputData.getHumidity(),
+                chooseInputData.getWindSpeed(), chooseInputData.getTemperatureWeight(),
+                chooseInputData.getHumidityWeight(), chooseInputData.getWindSpeedWeight());
+
+        // Then Save & prepareSuccessView
+        chooseDataAccessObject.savePreferences(weatherPref, chooseInputData.getCityList());
+        ChooseOutputData chooseOutputData = new ChooseOutputData(weatherPref, chooseInputData.getCityList());
         choosePresenter.prepareSuccessView(chooseOutputData);
     }
 }

@@ -9,13 +9,66 @@ public class WeatherPref {
     private static final int MAX_WIND_SPEED_PREFERENCE = 20;
 
     private int userTempPreference;
+
+    public int getUserTempPreference() {
+        return userTempPreference;
+    }
+
+    public void setUserTempPreference(int userTempPreference) {
+        this.userTempPreference = userTempPreference;
+    }
+
     private int userHumidityPreference;
+
+    public int getUserHumidityPreference() {
+        return userHumidityPreference;
+    }
+
+    public void setUserHumidityPreference(int userHumidityPreference) {
+        this.userHumidityPreference = userHumidityPreference;
+    }
+
     private int userWindSpeedPreference;
+
+    public int getUserWindSpeedPreference() {
+        return userWindSpeedPreference;
+    }
+
+    public void setUserWindSpeedPreference(int userWindSpeedPreference) {
+        this.userWindSpeedPreference = userWindSpeedPreference;
+    }
+
     private int userTempPreferenceScore;
+
+    public int getUserTempPreferenceScore() {
+        return userTempPreferenceScore;
+    }
+
+    public void setUserTempPreferenceScore(int userTempPreferenceScore) {
+        this.userTempPreferenceScore = userTempPreferenceScore;
+    }
+
     private int userHumidityPreferenceScore;
+
+    public int getUserHumidityPreferenceScore() {
+        return userHumidityPreferenceScore;
+    }
+
+    public void setUserHumidityPreferenceScore(int userHumidityPreferenceScore) {
+        this.userHumidityPreferenceScore = userHumidityPreferenceScore;
+    }
+
     private int userWindSpeedPreferenceScore;
 
-    public WeatherPref(int userHumidityPreference, int userTempPreference, int userWindSpeedPreference,
+    public int getUserWindSpeedPreferenceScore() {
+        return userWindSpeedPreferenceScore;
+    }
+
+    public void setUserWindSpeedPreferenceScore(int userWindSpeedPreferenceScore) {
+        this.userWindSpeedPreferenceScore = userWindSpeedPreferenceScore;
+    }
+
+    public WeatherPref(int userTempPreference, int userHumidityPreference, int userWindSpeedPreference,
                        int userTempPreferenceScore, int userHumidityPreferenceScore, int userWindSpeedPreferenceScore) {
 
         // Validate and set temperature preference within the specified range

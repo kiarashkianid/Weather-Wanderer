@@ -1,0 +1,2 @@
+userid,temperature,temperatureweight,humidity,humidityweight,windspeed,windspeedweight,cities
+1,10,10,11,11,12,12,[paris,france]

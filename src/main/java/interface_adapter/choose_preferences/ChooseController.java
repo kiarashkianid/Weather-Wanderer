@@ -12,10 +12,12 @@ public class ChooseController {
         this.chooseUseCaseInteractor = chooseInputBoundary;
     }
 
-    public void execute(int temp, int humidity, int windSpeed, ArrayList<String> cityList){
+    public void execute(int temp, int tempWeight, int humidity, int humidityWeight, int windSpeed, int windSpeedWeight,
+                        ArrayList<String> cityList){
         // take in the raw inputs & creates input data, then calls the interactor
         // with that input data
-        ChooseInputData chooseInputData = new ChooseInputData(temp, humidity, windSpeed, cityList);
+        ChooseInputData chooseInputData = new ChooseInputData(temp, tempWeight, humidity, humidityWeight, windSpeed,
+                windSpeedWeight, cityList);
 
         chooseUseCaseInteractor.execute(chooseInputData);
     }

@@ -1,24 +1,14 @@
 package use_case.choosepreferences;
 
+import entity.WeatherPref;
+
 import java.util.ArrayList;
 
 public class ChooseOutputData {
-    private final int temperature;
+    private final WeatherPref weatherPref;
 
-    public int getTemperature() {
-        return temperature;
-    }
-
-    private final int humidity;
-
-    public int getHumidity() {
-        return humidity;
-    }
-
-    private final int windSpeed;
-
-    public int getWindSpeed() {
-        return windSpeed;
+    public WeatherPref getWeatherPref() {
+        return weatherPref;
     }
 
     private final ArrayList<String> cityList;
@@ -27,10 +17,8 @@ public class ChooseOutputData {
         return cityList;
     }
 
-    public ChooseOutputData(int temperature, int humidity, int windSpeed, ArrayList<String> cityList){
-        this.temperature = temperature;
-        this.humidity = humidity;
-        this.windSpeed = windSpeed;
+    public ChooseOutputData(WeatherPref weatherPref, ArrayList<String> cityList){
+        this.weatherPref = weatherPref;
         this.cityList = cityList;
     }
 }
