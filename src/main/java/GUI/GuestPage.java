@@ -19,7 +19,6 @@ public class GuestPage {
     private JButton caclculateButton;
 
     private ArrayList<String> addedCities = new ArrayList<>();
-
     public GuestPage() {
         guestFrame = new JFrame("Guest Page");
         guestFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,7 +32,7 @@ public class GuestPage {
         inputPanel.setLayout(new GridLayout(3, 1));
 
         cityTextField = new JTextField(20);
-        JButton addButton = new JButton("Add City");
+        JButton addButton = new JButton("Add City In The Format: \'city,country\'");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -66,6 +65,8 @@ public class GuestPage {
                                 System.out.println("Button Hit Successful");
                             else {
                                 System.out.println("Button Hit Unsuccessful, Preferences Unfilled!");
+                                JOptionPane.showMessageDialog(null, "Not all Preferences Have" +
+                                            " Been Chosen.\nPlease Input Your Preferences and Try Again.");
                             }
                         }
                     }

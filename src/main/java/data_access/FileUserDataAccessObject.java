@@ -1,17 +1,14 @@
 package data_access;
 
-import entity.GuestUser;
-import entity.User;
-import entity.WeatherPref;
+import app.NormalUserFactory;
+import entity.*;
 import use_case.choosepreferences.ChooseDataAccessInterface;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.io.*;
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FileUserDataAccessObject implements ChooseDataAccessInterface {
 
@@ -20,6 +17,8 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface {
     private final Map<String, Integer> preferencesHeaders = new LinkedHashMap<>();
 
     private User curr_User;
+
+    private final Map<String, CommonUser> accounts = new HashMap<>(); // In the form: {String userID: User user}
 
     public User getCurr_User() {
         return curr_User;
@@ -31,7 +30,7 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface {
 
     private GuestUser guestUser = null;
 
-    public FileUserDataAccessObject(){
+    public FileUserDataAccessObject(UserFactory userFactory){
         preferencesHeaders.put("userid", 0);
         preferencesHeaders.put("temperature", 1);
         preferencesHeaders.put("temperatureweight", 2);
@@ -41,42 +40,97 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface {
         preferencesHeaders.put("windspeedweight", 6);
         preferencesHeaders.put("cities", 7);
 
-    }
+        if (preferencesCsvFile.length() == 0) {
+            savePreferences();
+        } else {
 
-    @Override
-    public void savePreferences(WeatherPref weatherPref, ArrayList<String> cityList) {
-        // If user is a guest:
-        if (curr_User.getUserID() == 0){
-            guestUser = new GuestUser(weatherPref, cityList);
-        }
-        else {
-            curr_User.setPreferences(weatherPref);
-            curr_User.setCityList(cityList);
-            // Needs to write to the save file to save the preferences.
-            System.out.println("Preferences saved to Save file");
+            try (BufferedReader reader = new BufferedReader(new FileReader(preferencesCsvFile))) {
+                String header = reader.readLine();
 
-            BufferedWriter writer;
-            try {
-                writer = new BufferedWriter(new FileWriter(preferencesCsvFile));
-                writer.write(String.join(",", preferencesHeaders.keySet()));
-                writer.newLine();
+                assert header.equals("userid,temperature,temperatureweight,humidity,humidityweight,windspeed," +
+                        "windspeedweight,cities");
 
-                WeatherPref currPreferences = curr_User.getPreferences();
+                String row;
+                while ((row = reader.readLine()) != null) {
+                    String[] col = row.split(",");
+                    String userid = String.valueOf(col[preferencesHeaders.get("userid")]);
+                    String temperature = String.valueOf(col[preferencesHeaders.get("temperature")]);
+                    String temperatureweight = String.valueOf(col[preferencesHeaders.get("temperatureweight")]);
+                    String humidity = String.valueOf(col[preferencesHeaders.get("humidity")]);
+                    String humidityweight = String.valueOf(col[preferencesHeaders.get("humidityweight")]);
+                    String windspeed = String.valueOf(col[preferencesHeaders.get("windspeed")]);
+                    String windspeedweight = String.valueOf(col[preferencesHeaders.get("windspeedweight")]);
+                    String cities = String.valueOf(col[preferencesHeaders.get("cities")]);
 
-                String line = String.format("%s,%s,%s,%s,%s,%s,%s,%s", String.valueOf(curr_User.getUserID()),
-                        currPreferences.getUserTempPreference(), currPreferences.getUserTempPreferenceScore(),
-                        currPreferences.getUserHumidityPreference(), currPreferences.getUserHumidityPreferenceScore(),
-                        currPreferences.getUserWindSpeedPreference(), currPreferences.getUserWindSpeedPreferenceScore(),
-                        cityList.toString());
-                writer.write(line);
-                writer.newLine();
+                    // Creates a WeatherPref instance for the User to be created
+                    WeatherPref weatherPref = new WeatherPref(Integer.parseInt(temperature), Integer.parseInt(humidity),
+                            Integer.parseInt(windspeed), Integer.parseInt(temperatureweight),
+                            Integer.parseInt(humidityweight), Integer.parseInt(windspeedweight));
 
-                writer.close();
+                    // Extracts the city,country String pairs from the 'cities' String:
 
+                    List<String> cityList = new ArrayList<>();
+
+                    // Define the pattern for extracting city and country pairs
+                    Pattern pattern = Pattern.compile("\\b([^,]+,[^\\]]+)\\b");
+                    Matcher matcher = pattern.matcher(cities);
+
+                    // Find matches and add them to the list
+                    while (matcher.find()) {
+                        cityList.add(matcher.group(1));
+                    }
+
+                    CommonUser user = CommonUserFactory.create(Integer.parseInt(userid), weatherPref, cityList);
+                    accounts.put(userid, user);
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
 
-        }
     }
+
+    @Override
+    public void savePreferences(WeatherPref weatherPref, ArrayList<String> cityList){
+        int user_id = curr_User.getUserID();
+        CommonUser user = CommonUserFactory.create(user_id, weatherPref, cityList);
+        accounts.put(String.valueOf(user_id), user);
+        this.savePreferences();
+    }
+
+    private void savePreferences() {
+        // If user is a guest:
+        if (curr_User.getUserID() == 0){
+            guestUser = new GuestUser(curr_User.getPreferences(), curr_User.getCityList());
+        }
+        else {
+            // Needs to write to the save file to save the preferences.
+            System.out.println("Preferences saved to Save file");
+            BufferedWriter writer;
+
+                try {
+                    writer = new BufferedWriter(new FileWriter(preferencesCsvFile));
+                    writer.write(String.join(",", preferencesHeaders.keySet()));
+                    writer.newLine();
+
+
+                    for (User user : accounts.values()) {
+                        WeatherPref currPreferences = user.getPreferences();
+
+                        String line = String.format("%s,%s,%s,%s,%s,%s,%s,%s", String.valueOf(user.getUserID()),
+                                currPreferences.getUserTempPreference(), currPreferences.getUserTempPreferenceScore(),
+                                currPreferences.getUserHumidityPreference(), currPreferences.getUserHumidityPreferenceScore(),
+                                currPreferences.getUserWindSpeedPreference(), currPreferences.getUserWindSpeedPreferenceScore(),
+                                user.getCityList().toString());
+                        writer.write(line);
+                        writer.newLine();
+
+                        writer.close();
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            }
+        }
