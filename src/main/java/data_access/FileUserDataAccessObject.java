@@ -2,7 +2,6 @@ package data_access;
 
 import entity.City;
 import entity.NormalUser;
-import data_access.UserListGateway;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,4 +26,4 @@ public class FileUserDataAccessObject {
             throw new RuntimeException(e);
         }
     }
-}
+ }

@@ -4,8 +4,17 @@ import entity.WeatherData;
 import entity.WeatherPref;
 
 public class CalculateScoreInteractor implements CalculateScoreInputBoundary {
+    final CalculateScoreDataAccessInterface userDataAccessObject;
+    final CalculateScoreOutputBoundary calculateScorePresenter;
+
+
+    public CalculateScoreInteractor(CalculateScoreDataAccessInterface userDataAccessObject, CalculateScoreOutputBoundary calculateScorePresenter) {
+        this.userDataAccessObject = userDataAccessObject;
+        this.calculateScorePresenter = calculateScorePresenter;
+    }
+
     @Override
-    public void calculateWeatherScore(CalculateScoreInputData inputData) {
+    public void execute(CalculateScoreInputData inputData) {
         WeatherPref userPreferences = inputData.getUserPreferences();
         WeatherData weatherData = inputData.getWeatherData();
 

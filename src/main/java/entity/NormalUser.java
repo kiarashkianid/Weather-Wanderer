@@ -49,4 +49,10 @@ public class NormalUser implements User {
     public int getUserID() {
         return userID;
     }
+
+    @Override
+    public void setCityList(List<City> cities) {
+        this.cityList=cities;
+
+    }
 }
