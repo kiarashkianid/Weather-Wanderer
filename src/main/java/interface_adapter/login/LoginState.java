@@ -1,26 +1,21 @@
-package interface_adapter.sign_up;
+package interface_adapter.login;
 
-public class SignUpState {
+public class LoginState {
 
     private String username = "";
     private String usernameError = null;
     private String password = "";
     private String passwordError = null;
-    private String repeatPassword = "";
-    private String repeatPasswordError = null;
 
-    public SignUpState(SignUpState copy) {
+    public LoginState(LoginState copy) {
         username = copy.username;
         usernameError = copy.usernameError;
         password = copy.password;
         passwordError = copy.passwordError;
-        repeatPassword = copy.repeatPassword;
-        repeatPasswordError = copy.repeatPasswordError;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
-    public SignUpState() {
-    }
+    public LoginState() {}
 
     public String getUsername() {
         return username;
@@ -38,14 +33,6 @@ public class SignUpState {
         return passwordError;
     }
 
-    public String getRepeatPassword() {
-        return repeatPassword;
-    }
-
-    public String getRepeatPasswordError() {
-        return repeatPasswordError;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -61,13 +48,4 @@ public class SignUpState {
     public void setPasswordError(String passwordError) {
         this.passwordError = passwordError;
     }
-
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
-    }
-
-    public void setRepeatPasswordError(String repeatPasswordError) {
-        this.repeatPasswordError = repeatPasswordError;
-    }
-
 }
