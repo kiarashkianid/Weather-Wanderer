@@ -3,6 +3,7 @@ package data_access;
 import app.NormalUserFactory;
 import entity.*;
 import use_case.choosepreferences.ChooseDataAccessInterface;
+import use_case.guestuser.GuestDataAccessInterface;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -10,7 +11,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FileUserDataAccessObject implements ChooseDataAccessInterface {
+public class FileUserDataAccessObject implements ChooseDataAccessInterface, GuestDataAccessInterface {
 
     private final File preferencesCsvFile = new File("preferences.csv");
 
@@ -28,7 +29,7 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface {
         this.curr_User = curr_User;
     }
 
-    private GuestUser guestUser = null;
+    private boolean isGuestUser = false;
 
     public FileUserDataAccessObject(UserFactory userFactory){
         preferencesHeaders.put("userid", 0);
@@ -101,7 +102,7 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface {
     private void savePreferences() {
         // If user is a guest:
         if (curr_User.getUserID() == 0){
-            guestUser = new GuestUser(curr_User.getPreferences(), curr_User.getCityList());
+            isGuestUser = true;
         }
         else {
             // Needs to write to the save file to save the preferences.
@@ -133,4 +134,10 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface {
             }
 
             }
-        }
+
+    @Override
+    public void saveGuest(GuestUser user) {
+        this.curr_User = user;
+        this.isGuestUser = true;
+    }
+}
