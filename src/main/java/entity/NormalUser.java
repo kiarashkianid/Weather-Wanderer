@@ -42,7 +42,7 @@ public class NormalUser implements User {
         this.weatherPreference = weatherPreference;
     }
 
-    private List<String> cityList;
+    private List<City> cityList;
     @Override
     public void setCityList(List<City> cityList) {
         this.cityList = cityList;
@@ -58,7 +58,7 @@ public class NormalUser implements User {
         NormalUser.savedCities = savedCities;
     }
 
-    public NormalUser(int userID, String username, String password, WeatherPref weatherPreference, List<String> cityList)
+    public NormalUser(int userID, String username, String password, WeatherPref weatherPreference, List<City> cityList)
     {
         this.userID = userID;
         this.username = username;

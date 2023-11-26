@@ -13,7 +13,7 @@ public class CalculateScoreViewModel extends ViewModel {
     public String getViewName() {
         return super.getViewName();
     }
-
+    //TODO
     public CalculateScoreState getState(){return state;}
 
     public void setState(CalculateScoreState calculateWeatherScoreState) {

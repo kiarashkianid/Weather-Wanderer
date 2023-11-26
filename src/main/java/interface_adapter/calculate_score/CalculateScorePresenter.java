@@ -4,7 +4,7 @@ import interface_adapter.ViewManagerModel;
 import use_case.CalculateScore.CalculateScoreOutputBoundary;
 import use_case.CalculateScore.CalculateScoreOutputData;
 
-//TODO not complete yet along with state
+//presenter is done TODO: ALL the states along with final page state and viewmodel need to be implemented
 public class CalculateScorePresenter implements CalculateScoreOutputBoundary {
 
     private final CalculateScoreViewModel calculateScoreViewModel;
@@ -34,7 +34,7 @@ public class CalculateScorePresenter implements CalculateScoreOutputBoundary {
 
     @Override
     public void prepareFailView(String error) {
-        CalculateScoreState calculateScoreState=CalculateScoreViewModel.getState();
+        CalculateScoreState calculateScoreState=calculateScoreViewModel.getState();
         calculateScoreState.setFinalScoreError(error);
         calculateScoreViewModel.firePropertyChanged();
 
