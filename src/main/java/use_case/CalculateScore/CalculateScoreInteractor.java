@@ -1,6 +1,7 @@
 package use_case.CalculateScore;
 
 import entity.City;
+import entity.User;
 import entity.WeatherPref;
 import entity.WeatherScore;
 
@@ -21,8 +22,8 @@ public class CalculateScoreInteractor implements CalculateScoreInputBoundary {
         WeatherPref userPreferences = inputData.getUserPreferences();
         List<City> cities = inputData.getAddedCities();
 
-
-        List<City> currentUserCities =userDataAccessObject.getCurr_User().getCityList();
+        User inMemoUser=userDataAccessObject.getCurr_User();
+        List<City> currentUserCities =inMemoUser.getCityList();
         for (City city: cities ) {
 
             double idealTemp = city.getWeatherData().getIdealTemp()/* Get ideal temperature from user preferences */;
@@ -57,7 +58,9 @@ public class CalculateScoreInteractor implements CalculateScoreInputBoundary {
         }
 
 
-        //TODO : somehow modify the in memory user after setting the new score incase the useer is to be saved
+        //modify the in memory user after setting the new score incase the useer is to be saved
+        userDataAccessObject.setCurrent_user(inMemoUser);
+
         //User currentUser =WeatherDataHelper.fetchAndUpdateWeatherData(userDataAccessObject.getCurr_User());
         City cityWithHighestScore = currentUserCities.get(0); // Initialize with the first city
         int highestScore = currentUserCities.get(0).getWeatherScore().weather_score; // Initialize with the score of the first city
