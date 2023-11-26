@@ -2,6 +2,7 @@ package data_access;
 
 import app.NormalUserFactory;
 import entity.*;
+import use_case.CalculateScore.CalculateScoreDataAccessInterface;
 import use_case.choosepreferences.ChooseDataAccessInterface;
 import entity.City;
 import entity.NormalUser;

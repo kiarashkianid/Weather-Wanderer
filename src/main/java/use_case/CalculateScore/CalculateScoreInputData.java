@@ -1,27 +1,28 @@
 package use_case.CalculateScore;
 
-import entity.WeatherData;
+import entity.City;
 import entity.WeatherPref;
+
+import java.util.List;
 
 // Updated Input data class used by the Controller
 public class CalculateScoreInputData {
     private final WeatherPref userPreferences;
-    private final WeatherData weatherData;
+    private final List<City> addedCity;
 
     public CalculateScoreInputData(
             WeatherPref userPreferences,
-            WeatherData weatherData
-    ) {
+            List<City> addedCity) {
         this.userPreferences = userPreferences;
-        this.weatherData = weatherData;
 
+        this.addedCity = addedCity;
     }
 
     public WeatherPref getUserPreferences() {
         return userPreferences;
     }
 
-    public WeatherData getWeatherData() { return weatherData;}
+    public List<City> getAddedCities(){return addedCity;}
 
 }
 

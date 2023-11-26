@@ -3,12 +3,13 @@ package data_access;
 import entity.GuestUser;
 import entity.User;
 import entity.WeatherPref;
+import use_case.CalculateScore.CalculateScoreDataAccessInterface;
 import use_case.choosepreferences.ChooseDataAccessInterface;
 import use_case.guestuser.GuestDataAccessInterface;
 
 import java.util.ArrayList;
 
-public class InMemoryUserDataAccessObject implements GuestDataAccessInterface, ChooseDataAccessInterface {
+public class InMemoryUserDataAccessObject implements GuestDataAccessInterface, ChooseDataAccessInterface, CalculateScoreDataAccessInterface {
 
     private User current_user = null;
     public User getCurrent_user() {

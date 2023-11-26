@@ -21,12 +21,12 @@ public class GuestUser implements User{
     }
 
     @Override
-    public List<String> getCityList() {
+    public List<City> getCityList() {
         return null;
     }
 
     @Override
-    public void setCityList(List<String> cityList) {
+    public void setCityList(List<City> cityList) {
 
     }
 

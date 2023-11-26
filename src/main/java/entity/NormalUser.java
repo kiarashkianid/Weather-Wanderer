@@ -44,7 +44,7 @@ public class NormalUser implements User {
 
     private List<String> cityList;
     @Override
-    public void setCityList(List<String> cityList) {
+    public void setCityList(List<City> cityList) {
         this.cityList = cityList;
     }
 

@@ -1,7 +1,5 @@
 package entity;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CommonUser implements User{
@@ -24,12 +22,12 @@ public class CommonUser implements User{
     }
 
     @Override
-    public List<String> getCityList() {
+    public List<City> getCityList() {
         return cityList;
     }
 
     @Override
-    public void setCityList(List<String> cityList) {
+    public void setCityList(List<City> cityList) {
         this.cityList = cityList;
     }
     CommonUser(int userID, WeatherPref weatherPref, List<String> cityList) {

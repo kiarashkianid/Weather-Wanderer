@@ -1,4 +1,5 @@
-package use_case.choosepreferences;
+
+package use_case.CalculateScore;
 
 import api.OpenWeatherAPI;
 import entity.City;
@@ -12,7 +13,7 @@ import java.util.List;
 public class WeatherDataHelper {
 
     // Method to fetch weather data for cities and update the user's city list
-    public User fetchAndUpdateWeatherData(User user) {
+    public static User fetchAndUpdateWeatherData(User user) {
         OpenWeatherAPI openWeatherAPI = new OpenWeatherAPI();
 
         // Get the user's city list without weather data
