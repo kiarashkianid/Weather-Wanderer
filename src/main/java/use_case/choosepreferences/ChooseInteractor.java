@@ -40,8 +40,6 @@ public class ChooseInteractor implements ChooseInputBoundary{
                 chooseInputData.getWindSpeed(), chooseInputData.getTemperatureWeight(),
                 chooseInputData.getHumidityWeight(), chooseInputData.getWindSpeedWeight());
 
-        // TODO: Sets the current User's Weather Data through an API call.
-
 
         //Turn the cities from CityList into type City:
         ArrayList<City> cityList = new ArrayList<City>();
