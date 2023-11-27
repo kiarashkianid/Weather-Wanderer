@@ -87,14 +87,14 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
                                         currentState.getWindSpeedWeight(), currentState.getCityList());
 
                             // Create Calculate Controller & Execute it:());
-                            ArrayList<City> addedCites = calculateScoreViewModel.getState().getCityList();
+                            ArrayList<City> addedCites = calculateScoreViewModel.getState().getCities();
                             WeatherPref weatherPref = new WeatherPref(chooseViewModel.getState().getTemperature(),
                                     chooseViewModel.getState().getTemperatureWeight(), chooseViewModel.getState().getHumidity(),
                                     chooseViewModel.getState().getHumidityWeight(), chooseViewModel.getState().getWindSpeed(),
                                     chooseViewModel.getState().getWindSpeedWeight());
 
                             calculateScoreController.execute(weatherPref, addedCites);
-
+                        }
                             else {
                                 JOptionPane.showMessageDialog(null, "Not all Preferences Have" +
                                         " Been Chosen.\nPlease Input Your Preferences and Try Again.");
@@ -102,7 +102,6 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
                             // TODO: execute calculateWeatherScore ( I THINK )
                         }
                     }
-                }
         );
 
         calculatePanel.add(caclculateButton);

@@ -54,5 +54,10 @@ public class ChooseInteractor implements ChooseInputBoundary{
         chooseDataAccessObject.savePreferences(currentUser, weatherPref, cityList);
         ChooseOutputData chooseOutputData = new ChooseOutputData(weatherPref, cityList);
         choosePresenter.prepareSuccessView(chooseOutputData);
+
+        // TODO: Update inMemoryDataAccessObject:
+        // Get the User, update the user with the API Helper & Prefs, & Cities.
+        // Save the user back to the inMemory.
+        //
     }
 }
