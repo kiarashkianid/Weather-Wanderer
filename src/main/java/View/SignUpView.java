@@ -1,5 +1,8 @@
 package View;
 
+import interface_adapter.login.LoginController;
+import interface_adapter.login.LoginState;
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.sign_up.SignUpController;
 import interface_adapter.sign_up.SignUpState;
 import interface_adapter.sign_up.SignUpViewModel;
@@ -14,7 +17,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class SignUpView extends JPanel implements ActionListener, PropertyChangeListener {
-    //basically signup from CA5 without the cancel buttoj
+    //basically signup from CA5 without the cancel button
     public final String viewName = "sign up";
 
     private final SignUpViewModel signupViewModel;
@@ -24,6 +27,8 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
     private final SignUpController signupController;
 
     private final JButton signUp;
+
+    private final JButton Login;
 
 
     public SignUpView(SignUpController controller, SignUpViewModel signupViewModel) {
@@ -45,6 +50,24 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
         JPanel buttons = new JPanel();
         signUp = new JButton(SignUpViewModel.SIGNUP_BUTTON_LABEL);
         buttons.add(signUp);
+
+        Login = new JButton(SignUpViewModel.LOGIN_LABEL);
+        buttons.add(Login);
+
+        Login.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(Login))
+                        {
+                            LoginState currentState = LoginViewModel.getState();
+                            LoginController.execute(
+                            )
+                        }
+                    }
+                }
+
+        );
 
 
 
