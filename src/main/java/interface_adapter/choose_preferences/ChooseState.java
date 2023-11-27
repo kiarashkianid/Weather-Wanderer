@@ -2,6 +2,7 @@ package interface_adapter.choose_preferences;
 
 import entity.City;
 import entity.User;
+import entity.WeatherPref;
 
 import java.util.ArrayList;
 
@@ -95,4 +96,5 @@ public class ChooseState {
 
     public void setPreferencesError(String error) {
     }
+
 }
