@@ -12,6 +12,12 @@ public class GuestUserPresenter implements GuestOutputBoundary{
 
     private final ChooseViewModel chooseViewModel;
 
+    public GuestUserPresenter(ViewManagerModel viewManagerModel, GuestUserViewModel guestUserViewModel, ChooseViewModel chooseViewModel) {
+        this.viewManagerModel = viewManagerModel;
+        this.guestUserViewModel = guestUserViewModel;
+        this.chooseViewModel = chooseViewModel;
+    }
+
 
     @Override
     public void prepareSuccessView(GuestOutputData guestOutputData) {

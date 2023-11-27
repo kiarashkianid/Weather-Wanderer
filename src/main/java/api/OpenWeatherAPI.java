@@ -17,7 +17,7 @@ import java.util.InputMismatchException;
  * NEEDS TESTING
  */
 
-public class OpenWeatherAPI {
+public class OpenWeatherAPI implements WeatherAPI {
 
     String API_TOKEN = "0767c0009ec4786d0e44c681f8159492";
 

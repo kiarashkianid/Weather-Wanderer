@@ -2,9 +2,10 @@ package entity;
 
 import java.util.List;
 
-public class GuestUser implements User {
-    private final int userID = 0;
-
+public class CommonUser implements User{
+    private int userID;
+    private WeatherPref weatherPref;
+    private List<City> cityList;
     @Override
     public int getUserID() {
         return userID;
@@ -12,29 +13,27 @@ public class GuestUser implements User {
 
     @Override
     public WeatherPref getPreferences() {
-        return null;
+        return weatherPref;
     }
 
     @Override
     public void setPreferences(WeatherPref weatherPref) {
-
+        this.weatherPref = weatherPref;
     }
 
     @Override
     public List<City> getCityList() {
-        return null;
+        return cityList;
     }
 
     @Override
     public void setCityList(List<City> cityList) {
-
-    }
-
-    private WeatherPref weatherPreference;
-    private List<String> cityList;
-
-    public GuestUser(WeatherPref weatherPref, List<String> cityList) {
-        this.weatherPreference = weatherPreference;
         this.cityList = cityList;
     }
+    CommonUser(int userID, WeatherPref weatherPref, List<City> cityList) {
+        this.userID = userID;
+        this.weatherPref = weatherPref;
+        this.cityList = cityList;
+    }
+
 }
