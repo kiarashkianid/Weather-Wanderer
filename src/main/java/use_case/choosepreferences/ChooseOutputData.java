@@ -1,5 +1,6 @@
 package use_case.choosepreferences;
 
+import entity.City;
 import entity.WeatherPref;
 
 import java.util.ArrayList;
@@ -11,13 +12,13 @@ public class ChooseOutputData {
         return weatherPref;
     }
 
-    private final ArrayList<String> cityList;
+    private final ArrayList<City> cityList;
 
-    public ArrayList<String> getCityList() {
+    public ArrayList<City> getCityList() {
         return cityList;
     }
 
-    public ChooseOutputData(WeatherPref weatherPref, ArrayList<String> cityList){
+    public ChooseOutputData(WeatherPref weatherPref, ArrayList<City> cityList){
         this.weatherPref = weatherPref;
         this.cityList = cityList;
     }

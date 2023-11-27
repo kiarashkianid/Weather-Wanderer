@@ -1,5 +1,6 @@
 package data_access;
 
+import entity.City;
 import entity.GuestUser;
 import entity.User;
 import entity.WeatherPref;
@@ -24,7 +25,7 @@ public class InMemoryUserDataAccessObject implements GuestDataAccessInterface, C
     }
 
     @Override
-    public void savePreferences(WeatherPref weatherPref, ArrayList<String> cityList) {
+    public void savePreferences(User currentUser, WeatherPref weatherPref, ArrayList<City> cityList) {
         System.out.println("Preferences saved to In-Memory Data");
     }
 

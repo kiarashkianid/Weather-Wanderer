@@ -12,12 +12,13 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-public class FileUserDataAccessObject implements ChooseDataAccessInterface {
 import java.io.FileWriter;
 import java.io.IOException;
+
+public class FileUserDataAccessObject implements ChooseDataAccessInterface {
+
  //still needs to be worked on
-public class FileUserDataAccessObject {
+
 
     private final File preferencesCsvFile = new File("preferences.csv");
 
@@ -35,7 +36,7 @@ public class FileUserDataAccessObject {
         this.curr_User = curr_User;
     }
 
-    private GuestUser guestUser = null;
+    private boolean isGuestUser = false;
 
     public FileUserDataAccessObject(UserFactory userFactory){
         preferencesHeaders.put("userid", 0);
@@ -86,8 +87,14 @@ public class FileUserDataAccessObject {
                     while (matcher.find()) {
                         cityList.add(matcher.group(1));
                     }
+                    // Turns city names into temporary list of type City
+                    ArrayList<City> tempCityList = new ArrayList<City>();
+                    for (String cityName : cityList){
+                        tempCityList.add(new City(cityName));
+                    }
 
-                    CommonUser user = CommonUserFactory.create(Integer.parseInt(userid), weatherPref, cityList);
+
+                    CommonUser user = CommonUserFactory.create(Integer.parseInt(userid), weatherPref, tempCityList);
                     accounts.put(userid, user);
                 }
             } catch (IOException e) {
@@ -98,7 +105,8 @@ public class FileUserDataAccessObject {
     }
 
     @Override
-    public void savePreferences(WeatherPref weatherPref, ArrayList<String> cityList){
+    public void savePreferences(User currentUser, WeatherPref weatherPref, ArrayList<City> cityList){
+        curr_User = currentUser;
         int user_id = curr_User.getUserID();
         CommonUser user = CommonUserFactory.create(user_id, weatherPref, cityList);
         accounts.put(String.valueOf(user_id), user);
@@ -108,7 +116,7 @@ public class FileUserDataAccessObject {
     private void savePreferences() {
         // If user is a guest:
         if (curr_User.getUserID() == 0){
-            guestUser = new GuestUser(curr_User.getPreferences(), curr_User.getCityList());
+            isGuestUser = true;
         }
         else {
             // Needs to write to the save file to save the preferences.

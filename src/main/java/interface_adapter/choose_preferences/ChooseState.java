@@ -1,10 +1,12 @@
 package interface_adapter.choose_preferences;
 
+import entity.User;
+
 import java.util.ArrayList;
 
 public class ChooseState {
 
-
+    private User currentUser;
 
     // Needs all 3 prefs & cityList so that weatherScore can access them.
     private int temperature;
@@ -17,6 +19,7 @@ public class ChooseState {
     private ArrayList<String> cityList;
 
     public ChooseState(ChooseState copy){
+        currentUser = copy.currentUser;
         temperature = copy.temperature;
         temperatureWeight = copy.temperatureWeight;
         humidity = copy.humidity;
@@ -29,6 +32,9 @@ public class ChooseState {
     public ChooseState(){
 
     }
+
+    public User getCurrentUser(){ return this.currentUser;}
+    public void setCurrentUser(User user){ this.currentUser = user;}
 
     public int getTemperature() {
         return temperature;

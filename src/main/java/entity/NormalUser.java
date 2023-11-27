@@ -69,16 +69,13 @@ public class NormalUser implements User {
         savedCities.add(this);
     }
 
-    public static void main (String[] args)
-    { //(hopefully) this creates a txt file which stores every NormalUser's userid, name, and list of cities
+    public static void main (String[] args) { //(hopefully) this creates a txt file which stores every NormalUser's userid, name, and list of cities
         String txtfile = "savedUsers.txt";
         try {
             FileWriter fileWriter = new FileWriter(txtfile);
-            for (NormalUser user: savedCities)
-            {
+            for (NormalUser user : savedCities) {
                 fileWriter.write(Integer.toString(user.userID) + " " + user.username);
-                for (City city: user.cityList)
-                {
+                for (City city : user.cityList) {
                     fileWriter.write(city.name);
                 }
             }
@@ -86,9 +83,6 @@ public class NormalUser implements User {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-    public int getUserID() {
-        return userID;
     }
 
     @Override
@@ -107,7 +101,7 @@ public class NormalUser implements User {
     }
 
     @Override
-    public List<String> getCityList() {
+    public List<City> getCityList() {
         return cityList;
     }
 }

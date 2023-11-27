@@ -70,7 +70,7 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
                                     !factor2Field.getText().isEmpty() && !factor3Field.getText().isEmpty() &&
                                     !preference1Field.getText().isEmpty() && !preference2Field.getText().isEmpty() &&
                                     !preference3Field.getText().isEmpty())
-                                chooseController.execute(currentState.getTemperature(),
+                                chooseController.execute(currentState.getCurrentUser(), currentState.getTemperature(),
                                         currentState.getTemperatureWeight(), currentState.getHumidity(),
                                         currentState.getHumidityWeight(), currentState.getWindSpeed(),
                                         currentState.getWindSpeedWeight(), currentState.getCityList());

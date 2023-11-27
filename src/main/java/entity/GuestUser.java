@@ -2,7 +2,7 @@ package entity;
 
 import java.util.List;
 
-public class GuestUser implements User{
+public class GuestUser implements User {
     private final int userID = 0;
 
     @Override
@@ -33,19 +33,8 @@ public class GuestUser implements User{
     private WeatherPref weatherPreference;
     private List<String> cityList;
 
-    public GuestUser(WeatherPref weatherPref, List<String> cityList){
+    public GuestUser(WeatherPref weatherPref, List<String> cityList) {
         this.weatherPreference = weatherPreference;
-                this.cityList = cityList;
-    }
-
-    @Override
-    public void setCityList(List<City> cities) {
-        this.cityList=cities;
-
-    }
-
-    @Override
-    public List<City> getCityList() {
-        return this.cityList;
+        this.cityList = cityList;
     }
 }
