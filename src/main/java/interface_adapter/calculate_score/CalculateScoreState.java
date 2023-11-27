@@ -6,6 +6,7 @@ import entity.WeatherPref;
 import use_case.choosepreferences.ChooseOutputData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CalculateScoreState {
     private WeatherPref weatherPref;
@@ -25,6 +26,8 @@ public class CalculateScoreState {
 
     }
 
+    public List<City> getCities(){return this.addedCities;}
+    public WeatherPref getWeatherPref(){return this.weatherPref;}
     public void setFinalScoreError(String error) {
 
     }
