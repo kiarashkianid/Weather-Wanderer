@@ -6,6 +6,7 @@ import interface_adapter.login.LoginViewModel;
 import interface_adapter.sign_up.SignUpController;
 import interface_adapter.sign_up.SignUpState;
 import interface_adapter.sign_up.SignUpViewModel;
+import interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,8 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
     public final String viewName = "sign up";
 
     private final SignUpViewModel signupViewModel;
+
+    private final ViewManagerModel viewManagerModel;
     private final JTextField usernameInputField = new JTextField(15);
     private final JPasswordField passwordInputField = new JPasswordField(15);
     private final JPasswordField repeatPasswordInputField = new JPasswordField(15);
@@ -31,10 +34,11 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
     private final JButton Login;
 
 
-    public SignUpView(SignUpController controller, SignUpViewModel signupViewModel) {
+    public SignUpView(SignUpController controller, SignUpViewModel signupViewModel, ViewManagerModel viewManagerModel) {
 
         this.signupController = controller;
         this.signupViewModel = signupViewModel;
+        this.viewManagerModel = viewManagerModel;
         signupViewModel.addPropertyChangeListener(this);
 
         JLabel title = new JLabel(SignUpViewModel.TITLE_LABEL);
@@ -60,8 +64,12 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
                     public void actionPerformed(ActionEvent e) {
                         if (e.getSource().equals(Login))
                         {
-                            LoginState currentState = LoginViewModel.getState();
-                            LoginViewModel.setState(currentState);
+
+                            viewManagerModel.setActiveView(LoginViewModel.getViewName());
+                            viewManagerModel.firePropertyChanged();
+
+
+
                         }
                     }
                 }
