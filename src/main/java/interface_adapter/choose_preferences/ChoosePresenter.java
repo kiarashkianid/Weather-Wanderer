@@ -21,11 +21,11 @@ public class ChoosePresenter implements ChooseOutputBoundary{
     }
 
     @Override
-    public void prepareSuccessView(ChooseOutputData preferences) {
+    public void prepareSuccessView(ChooseOutputData chooseOutputData) {
         // On success, switch to CalculateWeatherScoreView
         // Take outputdata & sets State's attributes, which hold this 'in-limbo' information.
         CalculateScoreState calculateWeatherScoreState = calculateWeatherScoreViewModel.getState();
-        calculateWeatherScoreState.setPreferences(preferences);
+        calculateWeatherScoreState.setPreferences(chooseOutputData);
         this.calculateWeatherScoreViewModel.setState(calculateWeatherScoreState);
         calculateWeatherScoreViewModel.firePropertyChanged();
 

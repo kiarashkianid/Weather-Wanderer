@@ -1,5 +1,6 @@
 package interface_adapter.choose_preferences;
 
+import entity.City;
 import entity.User;
 
 import java.util.ArrayList;
