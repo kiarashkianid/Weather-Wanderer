@@ -10,7 +10,13 @@ import java.util.List;
 
 public class CalculateScoreState {
     private WeatherPref weatherPref;
+
+
     private ArrayList<City> addedCities;
+
+    public ArrayList<City> getAddedCities() {
+        return addedCities;
+    }
 
     public CalculateScoreState(){
     }
