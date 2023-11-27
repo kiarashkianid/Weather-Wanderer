@@ -1,5 +1,10 @@
 package View;
 
+import entity.City;
+import entity.WeatherPref;
+import interface_adapter.calculate_score.CalculateScoreController;
+import interface_adapter.calculate_score.CalculateScoreState;
+import interface_adapter.calculate_score.CalculateScoreViewModel;
 import interface_adapter.choose_preferences.ChooseController;
 import interface_adapter.choose_preferences.ChooseState;
 import interface_adapter.choose_preferences.ChooseViewModel;
@@ -8,8 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -34,10 +37,15 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
     private final JButton caclculateButton;
 
     private final ArrayList<String> addedCities = new ArrayList<>();
+    private final CalculateScoreViewModel calculateScoreViewModel;
+    private final CalculateScoreController calculateScoreController;
 
-    public ChoosePreferencesView(ChooseController chooseController, ChooseViewModel chooseViewModel) {
+    public ChoosePreferencesView(ChooseController chooseController, ChooseViewModel chooseViewModel,
+                                 CalculateScoreController calculateScoreController, CalculateScoreViewModel calculateScoreViewModel) {
         this.chooseController = chooseController;
         this.chooseViewModel = chooseViewModel;
+        this.calculateScoreController = calculateScoreController;
+        this.calculateScoreViewModel = calculateScoreViewModel;
 
         choosePreferencesFrame = new JFrame("Choose Preferences");
         choosePreferencesFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,11 +77,17 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
                             if (!addedCities.isEmpty() && !factor1Field.getText().isEmpty() &&
                                     !factor2Field.getText().isEmpty() && !factor3Field.getText().isEmpty() &&
                                     !preference1Field.getText().isEmpty() && !preference2Field.getText().isEmpty() &&
-                                    !preference3Field.getText().isEmpty())
+                                    !preference3Field.getText().isEmpty()) {
                                 chooseController.execute(currentState.getCurrentUser(), currentState.getTemperature(),
                                         currentState.getTemperatureWeight(), currentState.getHumidity(),
                                         currentState.getHumidityWeight(), currentState.getWindSpeed(),
                                         currentState.getWindSpeedWeight(), currentState.getCityList());
+
+                                // Execute CalculateScore
+                                WeatherPref weatherPref = calculateScoreViewModel.getState().getWeatherPref();
+                                ArrayList<City> cityList = calculateScoreViewModel.getState().getAddedCities();
+                                calculateScoreController.execute(weatherPref, cityList);
+                            }
                             else {
                                 JOptionPane.showMessageDialog(null, "Not all Preferences Have" +
                                         " Been Chosen.\nPlease Input Your Preferences and Try Again.");
@@ -158,7 +172,6 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
     }
 
     @Override
