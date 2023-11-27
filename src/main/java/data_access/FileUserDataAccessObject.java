@@ -2,16 +2,23 @@ package data_access;
 
 import app.NormalUserFactory;
 import entity.*;
+import use_case.CalculateScore.CalculateScoreDataAccessInterface;
 import use_case.choosepreferences.ChooseDataAccessInterface;
-import use_case.guestuser.GuestDataAccessInterface;
+import entity.City;
+import entity.NormalUser;
 
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.io.FileWriter;
+import java.io.IOException;
 
-public class FileUserDataAccessObject implements ChooseDataAccessInterface, GuestDataAccessInterface {
+public class FileUserDataAccessObject implements ChooseDataAccessInterface {
+
+ //still needs to be worked on
+
 
     private final File preferencesCsvFile = new File("preferences.csv");
 
@@ -80,8 +87,14 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface, Gues
                     while (matcher.find()) {
                         cityList.add(matcher.group(1));
                     }
+                    // Turns city names into temporary list of type City
+                    ArrayList<City> tempCityList = new ArrayList<City>();
+                    for (String cityName : cityList){
+                        tempCityList.add(new City(cityName));
+                    }
 
-                    CommonUser user = CommonUserFactory.create(Integer.parseInt(userid), weatherPref, cityList);
+
+                    CommonUser user = CommonUserFactory.create(Integer.parseInt(userid), weatherPref, tempCityList);
                     accounts.put(userid, user);
                 }
             } catch (IOException e) {
@@ -92,7 +105,8 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface, Gues
     }
 
     @Override
-    public void savePreferences(WeatherPref weatherPref, ArrayList<String> cityList){
+    public void savePreferences(User currentUser, WeatherPref weatherPref, ArrayList<City> cityList){
+        curr_User = currentUser;
         int user_id = curr_User.getUserID();
         CommonUser user = CommonUserFactory.create(user_id, weatherPref, cityList);
         accounts.put(String.valueOf(user_id), user);
@@ -134,10 +148,23 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface, Gues
             }
 
             }
-
-    @Override
-    public void saveGuest(GuestUser user) {
-        this.curr_User = user;
-        this.isGuestUser = true;
-    }
-}
+            private void saveUser(){
+                { //(hopefully) this creates a txt file which stores every NormalUser's userid, name, and list of cities
+                    String txtfile = "savedUsers.txt";
+                    try {
+                        FileWriter fileWriter = new FileWriter(txtfile);
+                        for (NormalUser user: UserListGateway.getUserList())
+                        {
+                            fileWriter.write(Integer.toString(user.getUserID()) + " " + user.getUsername());
+                            for (City city: user.getCityList())
+                            {
+                                fileWriter.write(city.getName());
+                            }
+                        }
+                        fileWriter.close();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+           }
+        }

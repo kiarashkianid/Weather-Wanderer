@@ -42,9 +42,9 @@ public class NormalUser implements User {
         this.weatherPreference = weatherPreference;
     }
 
-    private List<String> cityList;
+    private List<City> cityList;
     @Override
-    public void setCityList(List<String> cityList) {
+    public void setCityList(List<City> cityList) {
         this.cityList = cityList;
     }
 
@@ -58,7 +58,7 @@ public class NormalUser implements User {
         NormalUser.savedCities = savedCities;
     }
 
-    public NormalUser(int userID, String username, String password, WeatherPref weatherPreference, List<String> cityList)
+    public NormalUser(int userID, String username, String password, WeatherPref weatherPreference, List<City> cityList)
     {
         this.userID = userID;
         this.username = username;
@@ -69,24 +69,20 @@ public class NormalUser implements User {
         savedCities.add(this);
     }
 
-    public static void main (String[] args)
-    { //(hopefully) this creates a txt file which stores every NormalUser's userid, name, and list of cities
+    public static void main (String[] args) { //(hopefully) this creates a txt file which stores every NormalUser's userid, name, and list of cities
         String txtfile = "savedUsers.txt";
         try {
             FileWriter fileWriter = new FileWriter(txtfile);
-            for (NormalUser user: savedCities)
-            {
+            for (NormalUser user : savedCities) {
                 fileWriter.write(Integer.toString(user.userID) + " " + user.username);
-                for (String city: user.cityList)
-                {
-                    fileWriter.write(city);
+                for (City city : user.cityList) {
+                    fileWriter.write(city.name);
                 }
             }
             fileWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Override
@@ -105,7 +101,7 @@ public class NormalUser implements User {
     }
 
     @Override
-    public List<String> getCityList() {
+    public List<City> getCityList() {
         return cityList;
     }
 }

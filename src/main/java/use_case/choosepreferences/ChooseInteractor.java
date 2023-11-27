@@ -2,7 +2,12 @@ package use_case.choosepreferences;
 
 
 import app.ChoosePreferencesFactory;
+import entity.City;
+import entity.User;
 import entity.WeatherPref;
+import use_case.CalculateScore.WeatherDataHelper;
+
+import java.util.ArrayList;
 
 public class ChooseInteractor implements ChooseInputBoundary{
     // If User_ID == "GUEST_USER", need InMemoryDataAcessObject, which stores a User Type UserInterface
@@ -35,9 +40,21 @@ public class ChooseInteractor implements ChooseInputBoundary{
                 chooseInputData.getWindSpeed(), chooseInputData.getTemperatureWeight(),
                 chooseInputData.getHumidityWeight(), chooseInputData.getWindSpeedWeight());
 
+        // TODO: Sets the current User's Weather Data through an API call.
+
+
+        //Turn the cities from CityList into type City:
+        ArrayList<City> cityList = new ArrayList<City>();
+        for (String cityName : chooseInputData.getCityList())
+            cityList.add(new City(cityName));
+
+        // Calls the API Helper to give the currentUser the weather Data
+        User currentUser = WeatherDataHelper.fetchAndUpdateWeatherData(chooseInputData.getCurrentUser());
+
+
         // Then Save & prepareSuccessView
-        chooseDataAccessObject.savePreferences(weatherPref, chooseInputData.getCityList());
-        ChooseOutputData chooseOutputData = new ChooseOutputData(weatherPref, chooseInputData.getCityList());
+        chooseDataAccessObject.savePreferences(currentUser, weatherPref, cityList);
+        ChooseOutputData chooseOutputData = new ChooseOutputData(weatherPref, cityList);
         choosePresenter.prepareSuccessView(chooseOutputData);
     }
 }

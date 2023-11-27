@@ -1,6 +1,5 @@
 package entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface User {
@@ -11,8 +10,8 @@ public interface User {
 
     public void setPreferences(WeatherPref weatherPref);
 
-    public List<String> getCityList();
+    public List<City> getCityList();
 
-    public void setCityList(List<String> cityList);
+    public void setCityList(List<City> cityList);
 
 }

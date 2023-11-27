@@ -1,13 +1,11 @@
 package entity;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class CommonUser implements User{
     private int userID;
     private WeatherPref weatherPref;
-    private List<String> cityList;
+    private List<City> cityList;
     @Override
     public int getUserID() {
         return userID;
@@ -24,15 +22,15 @@ public class CommonUser implements User{
     }
 
     @Override
-    public List<String> getCityList() {
+    public List<City> getCityList() {
         return cityList;
     }
 
     @Override
-    public void setCityList(List<String> cityList) {
+    public void setCityList(List<City> cityList) {
         this.cityList = cityList;
     }
-    CommonUser(int userID, WeatherPref weatherPref, List<String> cityList) {
+    CommonUser(int userID, WeatherPref weatherPref, List<City> cityList) {
         this.userID = userID;
         this.weatherPref = weatherPref;
         this.cityList = cityList;
