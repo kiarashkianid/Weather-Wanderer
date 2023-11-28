@@ -1,6 +1,4 @@
 package interface_adapter.calculate_score;
-//TODO
-
 import entity.City;
 import entity.WeatherPref;
 import use_case.choosepreferences.ChooseOutputData;

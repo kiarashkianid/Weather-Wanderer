@@ -4,7 +4,6 @@ import interface_adapter.ViewManagerModel;
 import use_case.CalculateScore.CalculateScoreOutputBoundary;
 import use_case.CalculateScore.CalculateScoreOutputData;
 
-//presenter is done TODO: ALL the states along with final page state and viewmodel need to be implemented
 public class CalculateScorePresenter implements CalculateScoreOutputBoundary {
 
     private final CalculateScoreViewModel calculateScoreViewModel;
@@ -21,10 +20,10 @@ public class CalculateScorePresenter implements CalculateScoreOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(CalculateScoreOutputData score) {
+    public void prepareSuccessView(CalculateScoreOutputData cityWithHighestScore) {
         //On success, switch to showResult view , take the outputdata and set states attribute
         ShowResultState resultState = showResultViewModel.getState();
-        resultState.setFinalScore(score);
+        resultState.setFinalScore(cityWithHighestScore);
         this.showResultViewModel.setState(resultState);
         showResultViewModel.firePropertyChanged();
 
