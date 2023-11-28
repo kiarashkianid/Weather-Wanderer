@@ -32,7 +32,7 @@ public class SignUpPresenter implements SignUpOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(SignUpOutputData user) {//switch to choose preferences
+    public void prepareSuccessView(SignUpOutputData user) {//switch to login and also save in database
         ChooseState chooseState = ChooseViewModel.getState();
         this.chooseViewModel.setState(chooseState);
         chooseViewModel.firePropertyChanged();
