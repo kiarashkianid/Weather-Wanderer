@@ -92,7 +92,7 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
                                     chooseViewModel.getState().getHumidityWeight(), chooseViewModel.getState().getWindSpeed(),
                                     chooseViewModel.getState().getWindSpeedWeight());
 
-                            // TODO: calculateScoreController.execute(weatherPref, addedCites);
+                            calculateScoreController.execute(weatherPref, addedCites);
                         }
                             else {
                                 JOptionPane.showMessageDialog(null, "Not all Preferences Have" +

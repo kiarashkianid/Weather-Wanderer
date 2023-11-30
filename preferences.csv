@@ -1,4 +1,4 @@
 userid,temperature,temperatureweight,humidity,humidityweight,windspeed,windspeedweight,cities
-1,5,5,5,5,5,5,[paris,france]
+1,1,1,1,1,1,1,[paris,france]
 2,2,2,2,2,2,2,[paris,france]
 3,3,3,3,3,3,3,[rome,italy]
