@@ -6,11 +6,6 @@ import java.util.ArrayList;
 
 public class ChooseInputData {
 
-    final private User currentUser;
-
-    public User getCurrentUser() {
-        return currentUser;
-    }
 
     final private int temperature;
 
@@ -52,8 +47,7 @@ public class ChooseInputData {
 
     final private ArrayList<String> cityList;
 
-    public ChooseInputData(User currentUser, int temperature, int temperatureWeight, int humidity, int humidityWeight, int windSpeed, int windSpeedWeight, ArrayList<String> cityList){
-        this.currentUser = currentUser;
+    public ChooseInputData(int temperature, int temperatureWeight, int humidity, int humidityWeight, int windSpeed, int windSpeedWeight, ArrayList<String> cityList){
         this.temperature = temperature;
         this.temperatureWeight = temperatureWeight;
         this.humidity = humidity;

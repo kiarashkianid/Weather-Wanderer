@@ -30,7 +30,7 @@ public class CalculateScoreState {
 
     }
 
-    public List<City> getCities(){return this.addedCities;}
+    public ArrayList<City> getCities(){return this.addedCities;}
     public WeatherPref getWeatherPref(){return this.weatherPref;}
     public void setFinalScoreError(String error) {
 

@@ -1,7 +1,6 @@
 package interface_adapter.guest_user;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.calculateweatherscore.CalculateWeatherScoreState;
 import interface_adapter.choose_preferences.ChooseState;
 import interface_adapter.choose_preferences.ChooseViewModel;
 import use_case.guestuser.GuestOutputBoundary;
@@ -25,7 +24,7 @@ public class GuestUserPresenter implements GuestOutputBoundary{
     public void prepareSuccessView(GuestOutputData guestOutputData) {
         // On success, switch to choose preferences view
         ChooseState chooseState = chooseViewModel.getState();
-        chooseState.setCurrUserID(guestOutputData.getUserID());
+        chooseState.setCurrentUser(guestOutputData.getUserID());
         this.chooseViewModel.setState(chooseState);
         chooseViewModel.firePropertyChanged();
 

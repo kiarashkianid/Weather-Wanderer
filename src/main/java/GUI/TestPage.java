@@ -13,7 +13,6 @@ import interface_adapter.calculate_score.CalculateScoreController;
 import interface_adapter.calculate_score.CalculateScorePresenter;
 import interface_adapter.calculate_score.CalculateScoreViewModel;
 import interface_adapter.calculate_score.ShowResultViewModel;
-import interface_adapter.calculateweatherscore.CalculateWeatherScoreViewModel;
 import interface_adapter.choose_preferences.ChooseController;
 import interface_adapter.choose_preferences.ChoosePresenter;
 import interface_adapter.choose_preferences.ChooseViewModel;
@@ -36,9 +35,9 @@ public class TestPage {
         // List<String> cityList1 = new ArrayList<String>();
         // cityList1.add("paris,france");
 
-        User normalUser = new NormalUser(2, "TestUser", "TestPassword",null, null);
+        User normalUser = new NormalUser(1, "TestUser", "TestPassword",null, null);
 
-        ChooseDataAccessInterface chooseDataAccessObject = new FileUserDataAccessObject(new CommonUserFactory());
+        InMemoryUserDataAccessObject chooseDataAccessObject = new InMemoryUserDataAccessObject();
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         ChooseViewModel chooseViewModel = new ChooseViewModel("chooseView");
         CalculateScoreViewModel calculateWeatherScoreViewModel = new CalculateScoreViewModel("calculateWeatherScoreView");
@@ -46,16 +45,15 @@ public class TestPage {
         ChoosePreferencesFactory choosePreferencesFactory = new ChoosePreferencesFactory();
         ChooseInputBoundary chooseInteractor = new ChooseInteractor(chooseDataAccessObject, choosePresenter, choosePreferencesFactory);
         ChooseController chooseController = new ChooseController(chooseInteractor);
-        ShowResultViewModel showResultViewModel = new ShowResultViewModel();
+        ShowResultViewModel showResultViewModel = new ShowResultViewModel("ShowResult");
         CalculateScorePresenter calculateScorePresenter = new CalculateScorePresenter(viewManagerModel, calculateWeatherScoreViewModel, showResultViewModel);
-        CalculateScoreDataAccessInterface calculateDAO = new InMemoryUserDataAccessObject();
-        CalculateScoreInteractor calculateScoreInteractor = new CalculateScoreInteractor(calculateDAO, calculateScorePresenter);
-        CalculateScoreController CalculateScoreController = new CalculateScoreController(calculateScoreInteractor);
-        ChoosePreferencesView choosePreferencesView = new ChoosePreferencesView(chooseController, chooseViewModel, CalculateScoreController, CalculateScoreViewModel);
+        CalculateScoreInteractor calculateScoreInteractor = new CalculateScoreInteractor(chooseDataAccessObject, calculateScorePresenter);
+        CalculateScoreController calculateScoreController = new CalculateScoreController(calculateScoreInteractor);
+        ChoosePreferencesView choosePreferencesView = new ChoosePreferencesView(chooseController, chooseViewModel, calculateScoreController, calculateWeatherScoreViewModel);
 
         chooseDataAccessObject.setCurr_User(normalUser);
 
-        new ChoosePreferencesView(chooseController, chooseViewModel); // Create and show the GuestPage
+        new ChoosePreferencesView(chooseController, chooseViewModel, calculateScoreController, calculateWeatherScoreViewModel); // Create and show the GuestPage
 
 
     }

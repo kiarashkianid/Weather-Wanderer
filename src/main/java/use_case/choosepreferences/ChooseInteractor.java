@@ -34,7 +34,7 @@ public class ChooseInteractor implements ChooseInputBoundary{
         // Fail Case dealt with in the View already.
 
         //Success case:
-        // TODO: If Kiarash wants a User as their input for calculateWeatherScore, then we need to change that using a User Factory.
+
         // First create WeatherPref Entity
         WeatherPref weatherPref = new WeatherPref(chooseInputData.getTemperature(), chooseInputData.getHumidity(),
                 chooseInputData.getWindSpeed(), chooseInputData.getTemperatureWeight(),
@@ -46,18 +46,19 @@ public class ChooseInteractor implements ChooseInputBoundary{
         for (String cityName : chooseInputData.getCityList())
             cityList.add(new City(cityName));
 
-        // Calls the API Helper to give the currentUser the weather Data
-        User currentUser = WeatherDataHelper.fetchAndUpdateWeatherData(chooseInputData.getCurrentUser());
+
+        // Get the User, update the user with the API Helper.
+        User inMemoryUser = chooseDataAccessObject.getCurr_User();
+        inMemoryUser.setCityList(cityList);
+        inMemoryUser.setPreferences(weatherPref);
+
+        User currentUser = WeatherDataHelper.fetchAndUpdateWeatherData(inMemoryUser);
 
 
-        // Then Save & prepareSuccessView
+        // Then Save User and its preferences, & execute prepareSuccessView
         chooseDataAccessObject.savePreferences(currentUser, weatherPref, cityList);
         ChooseOutputData chooseOutputData = new ChooseOutputData(weatherPref, cityList);
         choosePresenter.prepareSuccessView(chooseOutputData);
 
-        // TODO: Update inMemoryDataAccessObject:
-        // Get the User, update the user with the API Helper & Prefs, & Cities.
-        // Save the user back to the inMemory.
-        //
     }
 }

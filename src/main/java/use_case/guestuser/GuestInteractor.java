@@ -18,7 +18,7 @@ public class GuestInteractor implements GuestInputBoundary{
         guestUserDataAccessObject.saveGuest(guestUser);
 
 
-        GuestOutputData guestOutputData = new GuestOutputData(0);
+        GuestOutputData guestOutputData = new GuestOutputData(guestUser);
         guestPresenter.prepareSuccessView(guestOutputData);
     }
 
