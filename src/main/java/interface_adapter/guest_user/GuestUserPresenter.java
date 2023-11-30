@@ -1,4 +1,4 @@
-package interface_adapter.guest_user;
+/*package interface_adapter.guest_user;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.choose_preferences.ChooseState;
@@ -37,3 +37,4 @@ public class GuestUserPresenter implements GuestOutputBoundary{
         // Should never happen.
     }
 }
+*/
