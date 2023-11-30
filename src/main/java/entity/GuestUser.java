@@ -31,9 +31,9 @@ public class GuestUser implements User {
     }
 
     private WeatherPref weatherPreference;
-    private List<String> cityList;
+    private List<City> cityList;
 
-    public GuestUser(WeatherPref weatherPref, List<String> cityList) {
+    public GuestUser(WeatherPref weatherPref, List<City> cityList) {
         this.weatherPreference = weatherPreference;
         this.cityList = cityList;
     }
