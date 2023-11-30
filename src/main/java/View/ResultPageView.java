@@ -1,29 +1,23 @@
 package View;
 
 import interface_adapter.calculate_score.ShowResultState;
+import interface_adapter.calculate_score.ShowResultViewModel;
+
 import javax.swing.*;
 
 
 public class ResultPageView {
 
-    // Assume these are your UI components for displaying the city and score
+    // UI components for displaying the city and score
     private JLabel cityLabel;
     private JLabel scoreLabel;
 
-    public ResultPageView() {
-        // Initialize UI components and set up the view
+    private final ShowResultViewModel resultViewModel;
+
+    public ResultPageView(ShowResultViewModel resultViewModel) {
+        this.resultViewModel = resultViewModel;
         initializeComponents();
-    }
-
-    private void initializeComponents() {
-        // Initialize UI components, set layout, add them to the view, etc.
-        cityLabel = new JLabel();
-        scoreLabel = new JLabel();
-        // Add labels to the view...
-    }
-
-    // Method to update the view based on the ShowResultState
-    public void updateView(ShowResultState resultState) {
+        ShowResultState resultState=resultViewModel.getState();
         if (resultState != null) {
             // Get the city and score from the ShowResultState
             String cityName = resultState.getCity().getName();
@@ -33,7 +27,16 @@ public class ResultPageView {
             cityLabel.setText("City: " + cityName);
             scoreLabel.setText("Final Score: " + finalScore);
         }
+        // Initialize UI components and set up the view
     }
+
+    private void initializeComponents() {
+        // Initialize UI components, set layout, add them to the view, etc.
+        cityLabel = new JLabel();
+        scoreLabel = new JLabel();
+        // Add labels to the view...
+    }
+
 
 }
 
