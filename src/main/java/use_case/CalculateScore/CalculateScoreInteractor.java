@@ -75,7 +75,7 @@ public class CalculateScoreInteractor implements CalculateScoreInputBoundary {
 
 
         if (cityWithHighestScore.getWeatherScore().weather_score >= 1 && cityWithHighestScore.getWeatherScore().weather_score <= 100) {
-            CalculateScoreOutputData calculateScoreOutputData=new CalculateScoreOutputData(cityWithHighestScore.getWeatherScore().weather_score);
+            CalculateScoreOutputData calculateScoreOutputData=new CalculateScoreOutputData(cityWithHighestScore);
             calculateScorePresenter.prepareSuccessView(calculateScoreOutputData);
         }else{
             calculateScorePresenter.prepareFailView("Calculation failed , please try again!");

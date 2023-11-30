@@ -4,7 +4,6 @@ import entity.City;
 import entity.WeatherPref;
 import interface_adapter.ViewModel;
 import interface_adapter.calculate_score.CalculateScoreController;
-import interface_adapter.calculate_score.CalculateScoreState;
 import interface_adapter.calculate_score.CalculateScoreViewModel;
 import interface_adapter.choose_preferences.ChooseController;
 import interface_adapter.choose_preferences.ChooseState;
@@ -99,7 +98,6 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
                                 JOptionPane.showMessageDialog(null, "Not all Preferences Have" +
                                         " Been Chosen.\nPlease Input Your Preferences and Try Again.");
                             }
-                            // TODO: execute calculateWeatherScore ( I THINK )
                         }
                     }
         );
