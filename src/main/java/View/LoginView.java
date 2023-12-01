@@ -95,15 +95,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new LoginView();
-            }
-        });
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
 

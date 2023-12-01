@@ -76,8 +76,8 @@ public class NormalUser implements User {
        this.userID = userID;
        this.username = username;
        this.password = password;
-       this.weatherPreference = null;
-       this.cityList = null;
+       this.weatherPreference = new WeatherPref(1, 1, 1, 1, 1, 1);
+       this.cityList = new ArrayList<>();
 
    }
 

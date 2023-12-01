@@ -44,23 +44,45 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface {
     public void savePreferences(User currentUser, WeatherPref weatherPref, ArrayList<City> cityList){
     }
 
-    private void saveUser(){
+    public void saveUser(){
         //(hopefully) this creates a txt file which stores every NormalUser's userid, name, and list of cities
         String txtfile = "savedUsers.txt";
         try {
             FileWriter fileWriter = new FileWriter(txtfile);
             for (NormalUser user: UserListGateway.getUserList())
             {
-                fileWriter.write(Integer.toString(user.getUserID()) + " " + user.getUsername());
+                fileWriter.write(Integer.toString(user.getUserID()) + "," + user.getUsername() + "," + user.getPassword());
                 for (City city: user.getCityList())
                 {
-                    fileWriter.write(city.getName());
+                    fileWriter.write("," + city.getName());
                 }
+                fileWriter.write("\n");
             }
             fileWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void readUser() {
+        File txtfile = new File("savedUsers.txt");
+        List<String> users = new ArrayList<>();
+        try (Scanner userData = new Scanner(txtfile).useDelimiter("\n")) {
+            while (userData.hasNext()) {
+                users.add(userData.next());
+            }
+            for (String string : users) {
+                Scanner parameters = new Scanner(string).useDelimiter(",");
+                NormalUser normalUser = new NormalUser(Integer.parseInt(parameters.next()), parameters.next(), parameters.next());
+                while (parameters.hasNext()) {
+                    normalUser.getCityList().add(new City(parameters.next()+ "," + parameters.next()));
+                }
+                UserListGateway.getUserList().add(normalUser);
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
