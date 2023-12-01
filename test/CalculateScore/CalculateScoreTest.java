@@ -5,7 +5,11 @@ import entity.City;
 import entity.GuestUser;
 import entity.User;
 import entity.WeatherPref;
+import interface_adapter.ViewManagerModel;
 import interface_adapter.calculate_score.CalculateScoreController;
+import interface_adapter.calculate_score.CalculateScorePresenter;
+import interface_adapter.calculate_score.CalculateScoreViewModel;
+import interface_adapter.calculate_score.ShowResultViewModel;
 import use_case.CalculateScore.*;
 
 import java.util.ArrayList;
@@ -21,9 +25,12 @@ public class CalculateScoreTest {
         cityList.add(city1);;
         cityList.add(city2);
         User testUser=new GuestUser(new WeatherPref(20,10,10,50,50,50),cityList);
-        calculateScoreDataAccessInterface.setCurrent_user(testUser);
-        CalculateScoreOutputBoundary successPresenter = new CalculateScoreOutputBoundary() {
+        calculateScoreDataAccessInterface.setCurrent_user(WeatherDataHelper.fetchAndUpdateWeatherData(testUser));
+        ViewManagerModel viewManagerModel = new ViewManagerModel();
+        CalculateScoreViewModel calculateScoreViewModel = new CalculateScoreViewModel("calculateScore");
+        ShowResultViewModel showResultViewModel=new ShowResultViewModel("showResult");
 
+        CalculateScoreOutputBoundary successPresenter = new CalculateScorePresenter(viewManagerModel,calculateScoreViewModel,showResultViewModel) {
 
             @Override
             public void prepareSuccessView(CalculateScoreOutputData score) {
@@ -45,7 +52,6 @@ public class CalculateScoreTest {
         calculateScoreController.execute(testUser.getPreferences(),testUser.getCityList());
 
     }
-    // Attributes used to hold common classes that multiple tests will need.
 
     public static void main(String[] args) {
         CalculateScoreTest scoreTest=new CalculateScoreTest();
