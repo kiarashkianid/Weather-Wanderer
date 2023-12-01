@@ -17,13 +17,13 @@ import java.util.InputMismatchException;
  * NEEDS TESTING
  */
 
-public class OpenWeatherAPI {
+public class OpenWeatherAPI implements WeatherAPI {
 
     String API_TOKEN = "0767c0009ec4786d0e44c681f8159492";
 
     public HashMap getData(ArrayList<String> cityList){
         // for each "city,country" string in the arraylist, call getRawData, accounting for any errors/exceptions
-        // Then, add each of those to the hasmap *output* with each key being the city name & the value being the data
+        // Then, add each of those to the hashmap *output* with each key being the city name & the value being the data
         /*
           Example call for getData:
           OpenWeatherAPI openWeatherAPI = new OpenWeatherAPI();
@@ -40,7 +40,7 @@ public class OpenWeatherAPI {
             for (String city : cityList){
                 int commaIndex = city.indexOf(",");
                 HashMap data = getRawData(city.substring(0, commaIndex), city.substring(commaIndex));
-                output.put(city.substring(0, commaIndex), data);
+                output.put(city, data);
             }
         } catch (InputMismatchException e) {
             throw new RuntimeException(e);

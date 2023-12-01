@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginApp {
+    /*
     private JFrame frame;
     private JLayeredPane layeredPane;
     private JPanel panel;
@@ -107,4 +108,6 @@ public class LoginApp {
             }
         });
     }
+
+     */
 }
