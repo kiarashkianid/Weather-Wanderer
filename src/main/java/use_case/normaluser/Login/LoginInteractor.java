@@ -1,13 +1,17 @@
 package use_case.normaluser.Login;
 
+import data_access.InMemoryUserDataAccessObject;
+import data_access.UserListGateway;
 import entity.User;
 
 public class LoginInteractor implements LoginInputBoundary {
-    final LoginUserDataAccessInterface userDataAccessObject;
+    final InMemoryUserDataAccessObject inMemoryUserDataAccessObject;
+    final UserListGateway userDataAccessObject;
     final LoginOutputBoundary loginPresenter;
 
-    public LoginInteractor(LoginUserDataAccessInterface userDataAccessInterface,
+    public LoginInteractor(InMemoryUserDataAccessObject inMemoryUserDataAccessObject, UserListGateway userDataAccessInterface,
                            LoginOutputBoundary loginOutputBoundary) {
+        this.inMemoryUserDataAccessObject = inMemoryUserDataAccessObject;
         this.userDataAccessObject = userDataAccessInterface;
         this.loginPresenter = loginOutputBoundary;
     }
@@ -25,6 +29,7 @@ public class LoginInteractor implements LoginInputBoundary {
             } else {
 
                 User user = userDataAccessObject.get(loginInputData.getUsername());
+                inMemoryUserDataAccessObject.setCurr_User(user);
 
                 LoginOutputData loginOutputData = new LoginOutputData(user.getName(), false);
                 loginPresenter.prepareSuccessView(loginOutputData);

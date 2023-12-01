@@ -3,7 +3,7 @@ import use_case.normaluser.Login.LoginInputData;
 import use_case.normaluser.Login.LoginInputBoundary;
 
 public class LoginController {
-    static LoginInputBoundary loginUseCaseInteractor = null;
+    static LoginInputBoundary loginUseCaseInteractor;
     public LoginController(LoginInputBoundary loginUseCaseInteractor) {
         this.loginUseCaseInteractor = loginUseCaseInteractor;
     }
