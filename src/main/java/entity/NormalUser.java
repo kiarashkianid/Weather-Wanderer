@@ -18,6 +18,8 @@ public class NormalUser implements User {
         return username;
     }
 
+    public String getName(){return username;}
+
     public void setUsername(String username) {
         this.username = username;
     }

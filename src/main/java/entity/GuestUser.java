@@ -30,6 +30,16 @@ public class GuestUser implements User {
 
     }
 
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
     private WeatherPref weatherPreference;
     private List<City> cityList;
 

@@ -3,13 +3,13 @@ import use_case.normaluser.Login.LoginInputData;
 import use_case.normaluser.Login.LoginInputBoundary;
 
 public class LoginController {
-    final LoginInputBoundary loginUseCaseInteractor;
+    static LoginInputBoundary loginUseCaseInteractor = null;
     public LoginController(LoginInputBoundary loginUseCaseInteractor) {
         this.loginUseCaseInteractor = loginUseCaseInteractor;
     }
 
 
-    public void execute(String username, String password) {
+    public static void execute(String username, String password) {
         LoginInputData loginInputData = new LoginInputData(
                 username, password);
 
