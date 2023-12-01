@@ -22,7 +22,7 @@ public class CalculateScoreTest {
         City city1=new City("toronto");
         City city2=new City("london");
         List<City> cityList=new ArrayList<City>();
-        cityList.add(city1);;
+        cityList.add(city1);
         cityList.add(city2);
         User testUser=new GuestUser(new WeatherPref(20,10,10,50,50,50),cityList);
         calculateScoreDataAccessInterface.setCurrent_user(WeatherDataHelper.fetchAndUpdateWeatherData(testUser));
@@ -35,8 +35,8 @@ public class CalculateScoreTest {
             @Override
             public void prepareSuccessView(CalculateScoreOutputData score) {
                 List<City> cities =testUser.getCityList();
-                assert cities.get(0).getWeatherScore().equals(null);
-                assert cities.get(1).getWeatherScore().equals(null);
+                assert cities.get(0).getWeatherScore() == null;
+                assert cities.get(1).getWeatherScore() == null;
                 assert testUser.getCityList().equals(cityList);
             }
 
