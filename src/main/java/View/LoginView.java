@@ -9,8 +9,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class LoginView {
+public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
 
     public final String viewName = "login";
     private JFrame frame;
@@ -102,4 +104,13 @@ public class LoginView {
         });
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
+    }
 }
