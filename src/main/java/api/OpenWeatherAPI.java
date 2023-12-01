@@ -97,7 +97,7 @@ public class OpenWeatherAPI implements WeatherAPI {
     public static void main(String[] args) {
         OpenWeatherAPI openWeatherAPI = new OpenWeatherAPI();
         ArrayList cityList = new ArrayList<>();
-        cityList.add("london,uk");
+        cityList.add("toronto,canada");
         cityList.add("paris,france");
         System.out.println(openWeatherAPI.getData(cityList));
         // System.out.println(openWeatherAPI.getRawData("london", "uk"));
