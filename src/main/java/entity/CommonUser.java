@@ -30,6 +30,17 @@ public class CommonUser implements User{
     public void setCityList(List<City> cityList) {
         this.cityList = cityList;
     }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
     CommonUser(int userID, WeatherPref weatherPref, List<City> cityList) {
         this.userID = userID;
         this.weatherPref = weatherPref;

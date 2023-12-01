@@ -7,6 +7,7 @@ import use_case.normaluser.SignUp.SignUpInputBoundary;
 import use_case.normaluser.SignUp.SignUpOutputBoundary;
 import use_case.normaluser.SignUp.SignUpOutputData;
 import interface_adapter.login.LoginViewModel;
+import data_access.FileUserDataAccessObject;
 
 
 public class SignUpPresenter implements SignUpOutputBoundary {
@@ -32,10 +33,12 @@ public class SignUpPresenter implements SignUpOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(SignUpOutputData user) {//switch to login and also save in database
+    public void prepareSuccessView(SignUpOutputData user) {//switch to choose and also save in database
+
         ChooseState chooseState = chooseViewModel.getState();
         this.chooseViewModel.setState(chooseState);
         chooseViewModel.firePropertyChanged();
+
 
         viewManagerModel.setActiveView(chooseViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
