@@ -23,6 +23,7 @@ public class LoginTest {
     User successTest(){
         fileUserDataAccessObject.readUser();
         loginController.execute("users", "pass");
+        fileUserDataAccessObject.saveUser();
         return inMemoryUserDataAccessObject.getCurr_User();
 
     }

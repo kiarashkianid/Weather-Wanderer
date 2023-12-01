@@ -76,7 +76,7 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface {
                 Scanner parameters = new Scanner(string).useDelimiter(",");
                 NormalUser normalUser = new NormalUser(Integer.parseInt(parameters.next()), parameters.next(), parameters.next());
                 while (parameters.hasNext()) {
-                    normalUser.getCityList().add(new City(parameters.next()));
+                    normalUser.getCityList().add(new City(parameters.next()+ "," + parameters.next()));
                 }
                 UserListGateway.getUserList().add(normalUser);
             }
