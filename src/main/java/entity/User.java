@@ -14,4 +14,7 @@ public interface User {
 
     public void setCityList(List<City> cityList);
 
+    String getPassword();
+
+    String getName();
 }

@@ -1,14 +1,34 @@
 package use_case.normaluser.Login;
 
-public class LoginInteractor {
-    public static boolean authenticate(String username, String password) {
-        if (username.equals("user") && password.equals("pass")){
-        return true;}
-        else {return false;}
-        //TODO: Code Interactor to pull from DB via Gateway
+import entity.User;
+
+public class LoginInteractor implements LoginInputBoundary {
+    final LoginUserDataAccessInterface userDataAccessObject;
+    final LoginOutputBoundary loginPresenter;
+
+    public LoginInteractor(LoginUserDataAccessInterface userDataAccessInterface,
+                           LoginOutputBoundary loginOutputBoundary) {
+        this.userDataAccessObject = userDataAccessInterface;
+        this.loginPresenter = loginOutputBoundary;
     }
 
-    public static void userIdToMemory(int id){
-        //TODO: Add to Memory
+    @Override
+    public void execute(LoginInputData loginInputData) {
+        String username = loginInputData.getUsername();
+        String password = loginInputData.getPassword();
+        if (!userDataAccessObject.existsByName(username)) {
+            loginPresenter.prepareFailView(username + ": Account does not exist.");
+        } else {
+            String pwd = userDataAccessObject.get(username).getPassword();
+            if (!password.equals(pwd)) {
+                loginPresenter.prepareFailView("Incorrect password for " + username + ".");
+            } else {
+
+                User user = userDataAccessObject.get(loginInputData.getUsername());
+
+                LoginOutputData loginOutputData = new LoginOutputData(user.getName(), false);
+                loginPresenter.prepareSuccessView(loginOutputData);
+            }
+        }
     }
 }
