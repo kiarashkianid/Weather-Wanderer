@@ -22,7 +22,7 @@ import static app.SignupUseCaseFactory.createUserSignupUseCase;
 
 public class SignUptest {
     public static void main(String[] args) throws IOException {
-        JFrame application = new JFrame("Login Example");
+        JFrame application = new JFrame("Signup Example");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
