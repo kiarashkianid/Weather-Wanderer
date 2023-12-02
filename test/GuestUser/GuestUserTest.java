@@ -31,6 +31,7 @@ public class GuestUserTest {
         assert guestDataAccessObject.getCurr_User().getUserID() == 0; // Guest users always have userID 0.
     }
 
+
     @org.junit.Test // Want to test when prepareSuccessView() is called, switches to ChoosePreferencesView
     public void testGuestPresenter() throws IOException {
         GuestOutputData guestOutputData = new GuestOutputData(new GuestUser(null, null));
