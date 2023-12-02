@@ -22,7 +22,7 @@ public class GuestUser implements User {
 
     @Override
     public List<City> getCityList() {
-        return null;
+        return cityList;
     }
 
     @Override
@@ -40,11 +40,11 @@ public class GuestUser implements User {
         return null;
     }
 
-    private WeatherPref weatherPreference;
-    private List<City> cityList;
+    private final WeatherPref weatherPreference;
+    private final List<City> cityList;
 
     public GuestUser(WeatherPref weatherPref, List<City> cityList) {
-        this.weatherPreference = weatherPreference;
+        this.weatherPreference = weatherPref;
         this.cityList = cityList;
     }
 }
