@@ -41,7 +41,7 @@ public class CommonUser implements User{
         return null;
     }
 
-    CommonUser(int userID, WeatherPref weatherPref, List<City> cityList) {
+    public CommonUser(int userID, WeatherPref weatherPref, List<City> cityList) {
         this.userID = userID;
         this.weatherPref = weatherPref;
         this.cityList = cityList;

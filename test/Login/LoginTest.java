@@ -20,10 +20,11 @@ import java.util.List;
 
 public class LoginTest {
 
-    User successTest(){
+    void successTest(){
+
         fileUserDataAccessObject.readUser();
-        loginController.execute("users", "pass");
-        return inMemoryUserDataAccessObject.getCurr_User();
+        LoginView loginView = new LoginView(loginController);
+
 
     }
     InMemoryUserDataAccessObject inMemoryUserDataAccessObject = new InMemoryUserDataAccessObject();
@@ -41,11 +42,13 @@ public class LoginTest {
     LoginInteractor loginInteractor = new LoginInteractor(inMemoryUserDataAccessObject, userListGateway, loginPresenter);
     LoginController loginController = new LoginController(loginInteractor);
 
+
+
     FileUserDataAccessObject fileUserDataAccessObject = new FileUserDataAccessObject(null);
 
     public static void main(String[] args) {
         LoginTest loginTest=new LoginTest();
-        System.out.println(loginTest.successTest());
+        loginTest.successTest();
 
     }
 }

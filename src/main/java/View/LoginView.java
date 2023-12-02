@@ -24,7 +24,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     private JLabel statusLabel;
     private JLabel backgroundLabel; // Add a JLabel for the background
 
-    public LoginView() {
+    public LoginView(LoginController loginController) {
         frame = new JFrame(LoginViewModel.TITLE_LABEL);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(650, 400);
@@ -77,7 +77,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
-                LoginController.execute(username, password);
+                loginController.execute(username, password);
             }
         });
 

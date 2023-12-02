@@ -26,10 +26,6 @@ public class CalculateScoreInteractor implements CalculateScoreInputBoundary {
         List<City> currentUserCities =inMemoUser.getCityList();
         for (City city: cities ) {
 
-            double idealTemp = city.getWeatherData().getIdealTemp()/* Get ideal temperature from user preferences */;
-            double idealHumidity = city.getWeatherData().getIdealHumidity() /* Get ideal humidity from user preferences */;
-            double idealWindSpeed = city.getWeatherData().getIdealWindspeed()/* Get ideal windspeed from user preferences */;
-
             double actualTemperature = city.getWeatherData().temperature()/* Fetch actual temperature from weather data API */;
             double actualHumidity = city.getWeatherData().humidity() /* Fetch actual humidity from weather data API */;
             double actualPrecipitation = city.getWeatherData().windSpeed() /* Fetch actual precipitation from weather data API */;
@@ -43,7 +39,6 @@ public class CalculateScoreInteractor implements CalculateScoreInputBoundary {
             int userWindSpeedWeight = userPreferences.getUserWindSpeedPreferenceScore();
 
             int overallScore = CalculateWeatherScore.calculateOverallWeatherScore(
-                    idealTemp, idealHumidity, idealWindSpeed,
                     userTempPreference, userHumidityPreference, userWindSpeedPreference,
                     actualTemperature, actualHumidity, actualPrecipitation, userTempWeight, userHumidityWeight, userWindSpeedWeight
             );
