@@ -20,6 +20,8 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ChoosePreferencesView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -115,10 +117,20 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
             @Override
             public void actionPerformed(ActionEvent e) {
                 String cityName = cityTextField.getText();
-                if (!cityName.isEmpty()) {
-                    addedCities.add(cityName);
+
+                // Checks if the user input text is in the form: "city,country" using regex:
+                Pattern pattern = Pattern.compile("^[a-zA-Z]+,[a-zA-Z]+$");
+                Matcher matcher = pattern.matcher(cityName);
+
+                if (matcher.matches()) {
+                    addedCities.add(cityName.toLowerCase()); // converts the string to lower case for the API.
                     updateCitiesList();
                     cityTextField.setText("");
+                }
+                else {
+                    // Creates a popup telling the user their city,country input is incorrect:
+                    JOptionPane.showMessageDialog(null, "City Input Incorrect.\nPlease Input Your" +
+                            " City In the following format:\ncity,country");
                 }
             }
         });
