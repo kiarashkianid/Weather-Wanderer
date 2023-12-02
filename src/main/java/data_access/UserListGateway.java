@@ -1,6 +1,7 @@
 package data_access;
 
 import entity.City;
+import entity.CommonUser;
 import entity.NormalUser;
 import entity.User;
 import use_case.normaluser.Login.LoginUserDataAccessInterface;
@@ -18,6 +19,7 @@ public class UserListGateway implements SignUpUserDataAccessInterface, LoginUser
     public static List<NormalUser> getUserList() {
         return userList;
     }
+
     @Override
     public boolean existsByName(String username) {
         User user = null;
@@ -32,6 +34,7 @@ public class UserListGateway implements SignUpUserDataAccessInterface, LoginUser
     @Override
     public void save(NormalUser user) {
         userList.add(user);
+
     }
 
     public User get(String username) {
