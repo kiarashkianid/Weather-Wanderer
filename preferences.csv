@@ -3,3 +3,5 @@ userid,temperature,temperatureweight,humidity,humidityweight,windspeed,windspeed
 2,2,2,2,2,2,2,[paris,france]
 3,3,3,3,3,3,3,[rome,italy]
 16,1,1,1,1,1,1,[paris,france]
+1001,1,2,3,4,5,6,[rome,italy, warsaw,poland]
+1000,1,1,1,1,1,1,[paris,france]
