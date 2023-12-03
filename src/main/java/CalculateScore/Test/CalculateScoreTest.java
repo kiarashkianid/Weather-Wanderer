@@ -1,14 +1,13 @@
-package CalculateScore;
+package CalculateScore.Test;
 
+import View.ResultPageView;
 import data_access.InMemoryUserDataAccessObject;
-import entity.City;
-import entity.CommonUser;
-import entity.User;
-import entity.WeatherPref;
+import entity.*;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.calculate_score.*;
 import use_case.CalculateScore.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -21,10 +20,10 @@ public class CalculateScoreTest {
         CalculateScoreDataAccessInterface calculateScoreDataAccessInterface = new InMemoryUserDataAccessObject();
 
         // Creating two city instances and asserting their names
-        City city1 = new City("yazd,iran");
-        assert Objects.equals(city1.getName(), "yazd,iran");
-        City city2 = new City("london,uk");
-        assert city2.getName().equals("london,uk");
+        City city1 = new City("toronto,canada");
+        assert Objects.equals(city1.getName(), "toronto,canada");
+        City city2 = new City("vancouver,canada");
+        assert city2.getName().equals("vancouver,canada");
 
         // Creating a list of cities and adding the cities to it
         List<City> cityList = new ArrayList<>();
@@ -51,7 +50,7 @@ public class CalculateScoreTest {
 
         // Creating instances for the view manager, show result view model, and show result state
         ViewManagerModel viewManagerModel = new ViewManagerModel();
-        ShowResultViewModel showResultViewModel = new ShowResultViewModel("showResult");
+        ShowResultViewModel showResultViewModel = new ShowResultViewModel();
         ShowResultState showResultState = new ShowResultState();
         showResultViewModel.setState(showResultState);
 
@@ -64,6 +63,10 @@ public class CalculateScoreTest {
         CalculateScoreInputBoundary calculateScoreInteractor = new CalculateScoreInteractor(calculateScoreDataAccessInterface, successPresenter);
         CalculateScoreController calculateScoreController = new CalculateScoreController(calculateScoreInteractor);
         calculateScoreController.execute(testUser.getPreferences(), testUser.getCityList());
+        showResultViewModel.setState(showResultState);
+        ResultPageView resultPageView=new ResultPageView(showResultViewModel);
+        JFrame frame=new JFrame();
+        resultPageView.initializeComponents(frame);
     }
 
     public static void main(String[] args) {

@@ -1,12 +1,14 @@
 package app;
 
-import View.*;
+import View.ChoosePreferencesView;
+import View.LoginView;
+import View.SignUpView;
+import View.ViewManager;
 import data_access.FileUserDataAccessObject;
 import data_access.InMemoryUserDataAccessObject;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.calculate_score.CalculateScoreController;
 import interface_adapter.calculate_score.CalculateScorePresenter;
-import interface_adapter.calculate_score.CalculateScoreViewModel;
 import interface_adapter.calculate_score.ShowResultViewModel;
 import interface_adapter.choose_preferences.ChooseController;
 import interface_adapter.choose_preferences.ChooseViewModel;
@@ -25,12 +27,13 @@ import use_case.normaluser.Login.LoginOutputBoundary;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+
+
+
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.
 
@@ -76,12 +79,11 @@ public class Main {
         CalculateScoreInputBoundary calculateScoreInputBoundary=new CalculateScoreInteractor(inMemoryUserDataAccessObject,calculateScoreOutputBoundary);
         CalculateScoreController calculateScoreController=new CalculateScoreController(calculateScoreInputBoundary);
         ChoosePreferencesView preferencesView=new ChoosePreferencesView(chooseController,chooseViewModel,calculateScoreController,calculateScoreViewModel);
-        ResultPageView resultPageView=new ResultPageView(calculateScoreViewModel);
         views.add(preferencesView,preferencesView.viewName);
-        views.add(resultPageView,resultPageView.viewName);
 
         application.pack();;
         application.setVisible(false); //TODO: set to "true" once complete, then it should work (hopefully)
+
 
     }
 }
