@@ -8,7 +8,8 @@ public class ShowResultState {
 
     private City city;
     private WeatherScore finalScore;
-
+    public ShowResultState(){
+    }
     public ShowResultState(ShowResultState copy){
         city=copy.city;
         finalScore=copy.finalScore;
