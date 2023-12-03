@@ -44,7 +44,7 @@ public class ChoosePreferencesFactory {
                                                                CalculateScoreViewModel calculateScoreViewModel,
                                                                ShowResultViewModel showResultViewModel, CalculateScoreDataAccessInterface userDataAccessObject)
     {
-        CalculateScoreOutputBoundary calculateScoreOutputBoundary = new CalculateScorePresenter(viewManagerModel, calculateScoreViewModel, showResultViewModel);
+        CalculateScoreOutputBoundary calculateScoreOutputBoundary = new CalculateScorePresenter(viewManagerModel, showResultViewModel);
         CalculateScoreInputBoundary userCalculateInteractor = new CalculateScoreInteractor(userDataAccessObject, calculateScoreOutputBoundary);
         return new CalculateScoreController(userCalculateInteractor);
 
