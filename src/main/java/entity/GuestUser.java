@@ -12,7 +12,7 @@ public class GuestUser implements User {
 
     @Override
     public WeatherPref getPreferences() {
-        return null;
+        return weatherPreference;
     }
 
     @Override
