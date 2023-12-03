@@ -9,6 +9,7 @@ import javax.swing.*;
  * View class representing the result page that displays city and score information.
  */
 public class ResultPageView {
+    public final String viewName = "Result View";
 
     // UI components for displaying the city and score
     private JLabel cityLabel;

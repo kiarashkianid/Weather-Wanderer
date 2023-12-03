@@ -26,9 +26,7 @@ public class ChoosePreferencesTest {
     CalculateScoreViewModel calculateScoreViewModel = new CalculateScoreViewModel("ResultView");
     ChooseOutputBoundary choosePresenter = new ChoosePresenter(viewManagerModel, chooseViewModel,
             calculateScoreViewModel);
-    ChoosePreferencesFactory choosePreferencesFactory = new ChoosePreferencesFactory();
-    ChooseInputBoundary chooseInteractor = new ChooseInteractor(chooseDataAccessObject, choosePresenter,
-            choosePreferencesFactory);
+    ChooseInputBoundary chooseInteractor = new ChooseInteractor(chooseDataAccessObject, choosePresenter);
     @org.junit.Test // Want to test given correct inputdata, we get correct outputdata
     public void testChooseInteractor() throws IOException {
 

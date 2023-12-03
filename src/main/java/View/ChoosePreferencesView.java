@@ -24,6 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ChoosePreferencesView extends JPanel implements ActionListener, PropertyChangeListener {
+    public final String viewName = "Choose Preferences";
 
     private final ChooseController chooseController;
 

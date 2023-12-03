@@ -32,8 +32,8 @@ public class TestPage {
         ChooseViewModel chooseViewModel = new ChooseViewModel("chooseView");
         CalculateScoreViewModel calculateWeatherScoreViewModel = new CalculateScoreViewModel("calculateWeatherScoreView");
         ChooseOutputBoundary choosePresenter = new ChoosePresenter(viewManagerModel, chooseViewModel, calculateWeatherScoreViewModel);
-        //ChoosePreferencesFactory choosePreferencesFactory = new ChoosePreferencesFactory();
-        ChooseInputBoundary chooseInteractor = new ChooseInteractor(chooseDataAccessObject, choosePresenter, choosePreferencesFactory);
+
+        ChooseInputBoundary chooseInteractor = new ChooseInteractor(chooseDataAccessObject, choosePresenter);
         ChooseController chooseController = new ChooseController(chooseInteractor);
         ShowResultViewModel showResultViewModel = new ShowResultViewModel("ShowResult");
         CalculateScorePresenter calculateScorePresenter = new CalculateScorePresenter(viewManagerModel, showResultViewModel);

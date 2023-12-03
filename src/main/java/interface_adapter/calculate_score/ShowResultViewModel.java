@@ -10,8 +10,8 @@ public class ShowResultViewModel extends ViewModel {
     private ShowResultState state; // State containing result data
 
     // Constructor to initialize the ShowResultViewModel with a view name
-    public ShowResultViewModel(String viewName) {
-        super(viewName); // Call to superclass constructor
+    public ShowResultViewModel() {
+        super("Result View"); // Call to superclass constructor
     }
 
     // Retrieve the current state

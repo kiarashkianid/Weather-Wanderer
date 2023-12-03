@@ -7,8 +7,8 @@ import java.beans.PropertyChangeListener;
 public class ChooseViewModel extends ViewModel {
     private ChooseState state = new ChooseState();
 
-    public ChooseViewModel(String viewName) {
-        super(viewName);
+    public ChooseViewModel() {
+        super("Choose Preferences");
     }
 
     public ChooseState getState() {

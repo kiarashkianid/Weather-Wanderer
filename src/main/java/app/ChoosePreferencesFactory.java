@@ -35,7 +35,7 @@ public class ChoosePreferencesFactory {
         ChooseOutputBoundary chooseOutputBoundary = new ChoosePresenter(viewManagerModel, chooseViewModel,
                 calculateWeatherScoreViewModel);
         ChoosePreferencesFactory userFactory = new ChoosePreferencesFactory();
-        ChooseInputBoundary userChooseInteractor = new ChooseInteractor(userDataAccessObject, chooseOutputBoundary, userFactory);
+        ChooseInputBoundary userChooseInteractor = new ChooseInteractor(userDataAccessObject, chooseOutputBoundary);
         return new ChooseController(userChooseInteractor);
 
     }

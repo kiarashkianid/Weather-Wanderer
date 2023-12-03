@@ -15,14 +15,11 @@ public class ChooseInteractor implements ChooseInputBoundary{
     // Both these have their preferences.
     final ChooseDataAccessInterface chooseDataAccessObject;
     final ChooseOutputBoundary choosePresenter;
-    final ChoosePreferencesFactory choosePreferencesFactory;
 
     public ChooseInteractor(ChooseDataAccessInterface chooseDataAccessInterface,
-                           ChooseOutputBoundary choosePresenter,
-                           ChoosePreferencesFactory choosePreferencesFactory) {
+                           ChooseOutputBoundary choosePresenter) {
         this.chooseDataAccessObject = chooseDataAccessInterface;
         this.choosePresenter = choosePresenter;
-        this.choosePreferencesFactory = choosePreferencesFactory;
     }
     @Override
     public void execute(ChooseInputData chooseInputData){
