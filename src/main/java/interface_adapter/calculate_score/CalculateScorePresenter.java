@@ -6,16 +6,13 @@ import use_case.CalculateScore.CalculateScoreOutputData;
 
 public class CalculateScorePresenter implements CalculateScoreOutputBoundary {
 
-    private final CalculateScoreViewModel calculateScoreViewModel;
 
     private final ShowResultViewModel showResultViewModel;
     private ViewManagerModel viewManagerModel;
 
     public CalculateScorePresenter (ViewManagerModel viewManagerModel,
-                                    CalculateScoreViewModel calculateScoreViewModel,
                                     ShowResultViewModel showResultViewModel) {
         this.viewManagerModel=viewManagerModel;
-        this.calculateScoreViewModel=calculateScoreViewModel;
         this.showResultViewModel=showResultViewModel;
     }
 
@@ -33,9 +30,9 @@ public class CalculateScorePresenter implements CalculateScoreOutputBoundary {
 
     @Override
     public void prepareFailView(String error) {
-        CalculateScoreState calculateScoreState=calculateScoreViewModel.getState();
+        ShowResultState calculateScoreState=showResultViewModel.getState();
         calculateScoreState.setFinalScoreError(error);
-        calculateScoreViewModel.firePropertyChanged();
+        showResultViewModel.firePropertyChanged();
 
     }
 }

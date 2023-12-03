@@ -22,6 +22,9 @@ public class ShowResultState {
 
     public WeatherScore getFinalScore(){return finalScore;}
 
+    public void setFinalScoreError(String error) {
+
+    }
 }
 
 

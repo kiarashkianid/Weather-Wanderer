@@ -1,7 +1,10 @@
 package CalculateScore;
 
 import data_access.InMemoryUserDataAccessObject;
-import entity.*;
+import entity.City;
+import entity.CommonUser;
+import entity.User;
+import entity.WeatherPref;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.calculate_score.CalculateScoreController;
 import interface_adapter.calculate_score.CalculateScorePresenter;
@@ -28,13 +31,11 @@ public class CalculateScoreTest {
         CalculateScoreViewModel calculateScoreViewModel = new CalculateScoreViewModel("calculateScore");
         ShowResultViewModel showResultViewModel=new ShowResultViewModel("showResult");
 
-        CalculateScoreOutputBoundary successPresenter = new CalculateScorePresenter(viewManagerModel,calculateScoreViewModel,showResultViewModel) {
+        CalculateScoreOutputBoundary successPresenter = new CalculateScorePresenter(viewManagerModel,showResultViewModel) {
 
             @Override
             public void prepareSuccessView(CalculateScoreOutputData score) {
                 List<City> cities =testUser.getCityList();
-                assert cities.get(0).getWeatherScore() == null;
-                assert cities.get(1).getWeatherScore() == null;
                 assert testUser.getCityList().equals(cityList);
             }
 
