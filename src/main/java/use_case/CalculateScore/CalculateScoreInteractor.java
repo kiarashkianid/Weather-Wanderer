@@ -44,9 +44,9 @@ public class CalculateScoreInteractor implements CalculateScoreInputBoundary {
             int userTempWeight = userPreferences.getUserTempPreferenceScore();
             int userHumidityWeight = userPreferences.getUserHumidityPreferenceScore();
             int userWindSpeedWeight = userPreferences.getUserWindSpeedPreferenceScore();
-
+            CalculateWeatherScoreAlgorithm calculateWeatherScoreAlgorithm=new CalculateWeatherScore();
             // Calculate overall weather score for the city
-            int overallScore = CalculateWeatherScore.calculateOverallWeatherScore(
+            int overallScore = calculateWeatherScoreAlgorithm.calculateOverallWeatherScore(
                     userTempPreference, userHumidityPreference, userWindSpeedPreference,
                     actualTemperature, actualHumidity, actualPrecipitation,
                     userTempWeight, userHumidityWeight, userWindSpeedWeight

@@ -1,4 +1,4 @@
-package use_case.CalculateScore;
+package use_case.choosepreferences;
 
 import api.OpenWeatherAPI;
 import entity.City;

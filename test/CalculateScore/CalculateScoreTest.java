@@ -1,11 +1,21 @@
-package CalculateScore.Test;
+package CalculateScore;
 
 import View.ResultPageView;
 import data_access.InMemoryUserDataAccessObject;
-import entity.*;
+import entity.City;
+import entity.CommonUser;
+import entity.User;
+import entity.WeatherPref;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.calculate_score.*;
-import use_case.CalculateScore.*;
+import interface_adapter.calculate_score.CalculateScoreController;
+import interface_adapter.calculate_score.CalculateScorePresenter;
+import interface_adapter.calculate_score.ShowResultState;
+import interface_adapter.calculate_score.ShowResultViewModel;
+import use_case.CalculateScore.CalculateScoreDataAccessInterface;
+import use_case.CalculateScore.CalculateScoreInputBoundary;
+import use_case.CalculateScore.CalculateScoreInteractor;
+import use_case.CalculateScore.CalculateScoreOutputBoundary;
+import use_case.choosepreferences.WeatherDataHelper;
 
 import javax.swing.*;
 import java.util.ArrayList;

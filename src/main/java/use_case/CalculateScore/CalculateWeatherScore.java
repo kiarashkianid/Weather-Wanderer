@@ -1,7 +1,7 @@
 package use_case.CalculateScore;
 
 // Helper class to calculate the overall weather score based on user preferences and actual weather data
-public class CalculateWeatherScore {
+public class CalculateWeatherScore implements CalculateWeatherScoreAlgorithm {
 
     /**
      * Calculates the overall weather score based on user preferences and actual weather data.
@@ -17,7 +17,8 @@ public class CalculateWeatherScore {
      * @param windSpeedWeight       The weightage assigned to wind speed in the overall score calculation.
      * @return The calculated overall weather score.
      */
-    public static int calculateOverallWeatherScore(int userTempPreference, int userHumidityPreference, int userWindSpeedPreference,
+    @Override
+    public  int calculateOverallWeatherScore(int userTempPreference, int userHumidityPreference, int userWindSpeedPreference,
                                                    double actualTemperature, double actualHumidity, double actualWindSpeed,
                                                    double tempWeight, double humidityWeight, double windSpeedWeight) {
 
