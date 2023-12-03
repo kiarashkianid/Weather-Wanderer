@@ -4,7 +4,7 @@ import entity.City;
 import entity.WeatherPref;
 import interface_adapter.ViewModel;
 import interface_adapter.calculate_score.CalculateScoreController;
-import interface_adapter.calculate_score.CalculateScoreViewModel;
+import interface_adapter.calculate_score.ShowResultViewModel;
 import interface_adapter.choose_preferences.ChooseController;
 import interface_adapter.choose_preferences.ChooseState;
 import interface_adapter.choose_preferences.ChooseViewModel;
@@ -20,6 +20,7 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,7 +48,7 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
     private final ArrayList<String> addedCities = new ArrayList<>();
 
     public ChoosePreferencesView(ChooseController chooseController, ChooseViewModel chooseViewModel,
-                                 CalculateScoreController calculateScoreController, CalculateScoreViewModel calculateScoreViewModel ) {
+                                 CalculateScoreController calculateScoreController) {
         this.chooseController = chooseController;
         this.chooseViewModel = chooseViewModel;
         this.calculateScoreController = calculateScoreController;
@@ -89,13 +90,14 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
                                         currentState.getWindSpeedWeight(), currentState.getCityList());
 
                             // Create Calculate Controller & Execute it:());
-                            ArrayList<City> addedCites = calculateScoreViewModel.getState().getCities();
+                            List<City> cityList = chooseViewModel.getState().getAddedCities();
+
                             WeatherPref weatherPref = new WeatherPref(chooseViewModel.getState().getTemperature(),
                                     chooseViewModel.getState().getTemperatureWeight(), chooseViewModel.getState().getHumidity(),
                                     chooseViewModel.getState().getHumidityWeight(), chooseViewModel.getState().getWindSpeed(),
                                     chooseViewModel.getState().getWindSpeedWeight());
 
-                            calculateScoreController.execute(weatherPref, addedCites);
+                            calculateScoreController.execute(weatherPref, cityList);
                         }
                             else {
                                 JOptionPane.showMessageDialog(null, "Not all Preferences Have" +

@@ -1,3 +1,4 @@
+/**
 package interface_adapter.calculate_score;
 
 import interface_adapter.ViewModel;
@@ -27,7 +28,7 @@ public class CalculateScoreViewModel extends ViewModel {
 
     }
 }
-
+**/
 
 
 

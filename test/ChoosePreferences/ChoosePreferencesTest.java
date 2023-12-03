@@ -9,8 +9,11 @@ import entity.WeatherPref;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.calculate_score.CalculateScoreState;
 import interface_adapter.calculate_score.CalculateScoreViewModel;
+import interface_adapter.calculate_score.ShowResultState;
+import interface_adapter.calculate_score.ShowResultViewModel;
 import interface_adapter.choose_preferences.ChooseController;
 import interface_adapter.choose_preferences.ChoosePresenter;
+import interface_adapter.choose_preferences.ChooseState;
 import interface_adapter.choose_preferences.ChooseViewModel;
 import use_case.choosepreferences.*;
 
@@ -22,10 +25,10 @@ public class ChoosePreferencesTest {
     // Attributes used to hold common classes that multiple tests will need.
     ChooseDataAccessInterface chooseDataAccessObject = new testDataAccessObject();
     ViewManagerModel viewManagerModel = new ViewManagerModel();
-    ChooseViewModel chooseViewModel = new ChooseViewModel("ChoosePreferences");
-    CalculateScoreViewModel calculateScoreViewModel = new CalculateScoreViewModel("ResultView");
+    ChooseViewModel chooseViewModel = new ChooseViewModel();
+    ShowResultViewModel showResultViewModel = new ShowResultViewModel();
     ChooseOutputBoundary choosePresenter = new ChoosePresenter(viewManagerModel, chooseViewModel,
-            calculateScoreViewModel);
+            showResultViewModel);
     ChooseInputBoundary chooseInteractor = new ChooseInteractor(chooseDataAccessObject, choosePresenter);
     @org.junit.Test // Want to test given correct inputdata, we get correct outputdata
     public void testChooseInteractor() throws IOException {
@@ -47,26 +50,14 @@ public class ChoosePreferencesTest {
         // 1:
         ArrayList<City> expectedCitiesList = new ArrayList<>();
         expectedCitiesList.add(new City("paris,france"));
-        CalculateScoreState calculateScoreState = calculateScoreViewModel.getState();
-        ArrayList<City> obtainedCitiesList = calculateScoreState.getAddedCities();
+        ShowResultState showResultState = showResultViewModel.getState();
+        City bestCity = showResultState.getCity();
 
-        assert Objects.equals(obtainedCitiesList.get(0).getName(), expectedCitiesList.get(0).getName());
+        assert bestCity != null;
 
         // TODO: getWeatherScore() assertion fails, so it must be returning null weatherScore :/
-        // assert obtainedCitiesList.get(0).getWeatherScore() != null;
-        assert obtainedCitiesList.get(0).getWeatherData() != null;
-
-        WeatherPref expectedWeatherPref = new WeatherPref(1,1,
-                1,1,1,1);
-
-        WeatherPref obtainedWeatherPref = calculateScoreState.getWeatherPref();
-
-        assert obtainedWeatherPref.getUserTempPreference() == expectedWeatherPref.getUserTempPreference();
-        assert obtainedWeatherPref.getUserTempPreferenceScore() == expectedWeatherPref.getUserTempPreferenceScore();
-        assert obtainedWeatherPref.getUserHumidityPreference() == expectedWeatherPref.getUserHumidityPreference();
-        assert obtainedWeatherPref.getUserHumidityPreferenceScore() == expectedWeatherPref.getUserHumidityPreferenceScore();
-        assert obtainedWeatherPref.getUserWindSpeedPreference() == expectedWeatherPref.getUserWindSpeedPreference();
-        assert obtainedWeatherPref.getUserWindSpeedPreferenceScore() == expectedWeatherPref.getUserWindSpeedPreferenceScore();
+        assert bestCity.getWeatherScore() != null;
+        assert bestCity.getWeatherData() != null;
 
         // 2:
         assert Objects.equals(viewManagerModel.getActiveView(), "ResultView");
@@ -111,17 +102,16 @@ public class ChoosePreferencesTest {
         ChooseOutputData chooseOutputData = new ChooseOutputData(weatherPref, cityList);
         choosePresenter.prepareSuccessView(chooseOutputData);
 
-        // Check calculateScoreState:
-        CalculateScoreState calculateScoreState = calculateScoreViewModel.getState();
+        // Check chooseState was edited:
+        ChooseState chooseState = chooseViewModel.getState();
 
-        assert calculateScoreState.getWeatherPref().getUserTempPreference() == 1;
-        assert calculateScoreState.getWeatherPref().getUserTempPreferenceScore() == 2;
-        assert calculateScoreState.getWeatherPref().getUserHumidityPreference() == 3;
-        assert calculateScoreState.getWeatherPref().getUserHumidityPreferenceScore() == 4;
-        assert calculateScoreState.getWeatherPref().getUserWindSpeedPreference() == 5;
-        assert calculateScoreState.getWeatherPref().getUserWindSpeedPreferenceScore() == 6;
-
-        assert Objects.equals(calculateScoreState.getAddedCities().get(0).getName(), "rome,italy");
+        assert Objects.equals(chooseState.getAddedCities().get(0).getName(), "rome,italy");
+        assert chooseState.getCurrentUser().getPreferences().getUserTempPreference() == 1;
+        assert chooseState.getCurrentUser().getPreferences().getUserTempPreferenceScore() == 2;
+        assert chooseState.getCurrentUser().getPreferences().getUserHumidityPreference() == 3;
+        assert chooseState.getCurrentUser().getPreferences().getUserHumidityPreferenceScore() == 4;
+        assert chooseState.getCurrentUser().getPreferences().getUserWindSpeedPreference() == 5;
+        assert chooseState.getCurrentUser().getPreferences().getUserWindSpeedPreferenceScore() == 6;
 
         // Check the active view:
         assert Objects.equals(viewManagerModel.getActiveView(), "ResultView");

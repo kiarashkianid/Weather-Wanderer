@@ -5,10 +5,12 @@ import entity.User;
 import entity.WeatherPref;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChooseState {
 
     private User currentUser;
+    private List<City> addedCities;
 
     // Needs all 3 prefs & cityList so that weatherScore can access them.
     private int temperature;
@@ -97,4 +99,11 @@ public class ChooseState {
     public void setPreferencesError(String error) {
     }
 
+    public List<City> getAddedCities() {
+        return addedCities;
+    }
+
+    public void setAddedCities(List<City> addedCities) {
+        this.addedCities = addedCities;
+    }
 }

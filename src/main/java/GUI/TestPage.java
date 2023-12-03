@@ -8,7 +8,6 @@ import entity.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.calculate_score.CalculateScoreController;
 import interface_adapter.calculate_score.CalculateScorePresenter;
-import interface_adapter.calculate_score.CalculateScoreViewModel;
 import interface_adapter.calculate_score.ShowResultViewModel;
 import interface_adapter.choose_preferences.ChooseController;
 import interface_adapter.choose_preferences.ChoosePresenter;
@@ -29,21 +28,20 @@ public class TestPage {
 
         InMemoryUserDataAccessObject chooseDataAccessObject = new InMemoryUserDataAccessObject();
         ViewManagerModel viewManagerModel = new ViewManagerModel();
-        ChooseViewModel chooseViewModel = new ChooseViewModel("chooseView");
-        CalculateScoreViewModel calculateWeatherScoreViewModel = new CalculateScoreViewModel("calculateWeatherScoreView");
-        ChooseOutputBoundary choosePresenter = new ChoosePresenter(viewManagerModel, chooseViewModel, calculateWeatherScoreViewModel);
+        ChooseViewModel chooseViewModel = new ChooseViewModel();
+        ShowResultViewModel showResultViewModel = new ShowResultViewModel();
+        ChooseOutputBoundary choosePresenter = new ChoosePresenter(viewManagerModel, chooseViewModel, showResultViewModel);
 
         ChooseInputBoundary chooseInteractor = new ChooseInteractor(chooseDataAccessObject, choosePresenter);
         ChooseController chooseController = new ChooseController(chooseInteractor);
-        ShowResultViewModel showResultViewModel = new ShowResultViewModel("ShowResult");
         CalculateScorePresenter calculateScorePresenter = new CalculateScorePresenter(viewManagerModel, showResultViewModel);
         CalculateScoreInteractor calculateScoreInteractor = new CalculateScoreInteractor(chooseDataAccessObject, calculateScorePresenter);
         CalculateScoreController calculateScoreController = new CalculateScoreController(calculateScoreInteractor);
-        ChoosePreferencesView choosePreferencesView = new ChoosePreferencesView(chooseController, chooseViewModel, calculateScoreController, calculateWeatherScoreViewModel);
+        ChoosePreferencesView choosePreferencesView = new ChoosePreferencesView(chooseController, chooseViewModel, calculateScoreController);
 
         chooseDataAccessObject.setCurr_User(normalUser);
 
-        new ChoosePreferencesView(chooseController, chooseViewModel, calculateScoreController, calculateWeatherScoreViewModel); // Create and show the GuestPage
+        new ChoosePreferencesView(chooseController, chooseViewModel, calculateScoreController); // Create and show the GuestPage
 
 
     }

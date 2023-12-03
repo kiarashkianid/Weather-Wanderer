@@ -34,7 +34,7 @@ public class SignUptest {
         new ViewManager(views, cardLayout, viewManagerModel);
 
         SignUpViewModel signupViewModel = new SignUpViewModel();
-        ChooseViewModel chooseViewModel = new ChooseViewModel("choosing");
+        ChooseViewModel chooseViewModel = new ChooseViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
         userDataAccessObject = new FileUserDataAccessObject(new CommonUserFactory());

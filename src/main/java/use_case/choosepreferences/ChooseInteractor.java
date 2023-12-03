@@ -8,6 +8,7 @@ import entity.WeatherPref;
 import use_case.CalculateScore.WeatherDataHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChooseInteractor implements ChooseInputBoundary{
     // If User_ID == "GUEST_USER", need InMemoryDataAcessObject, which stores a User Type UserInterface
@@ -54,7 +55,10 @@ public class ChooseInteractor implements ChooseInputBoundary{
 
         // Then Save User and its preferences, & execute prepareSuccessView
         chooseDataAccessObject.savePreferences(currentUser, weatherPref, cityList);
-        ChooseOutputData chooseOutputData = new ChooseOutputData(weatherPref, cityList);
+        //Change ArrayList to normal List:
+        List<City> cities = currentUser.getCityList();
+
+        ChooseOutputData chooseOutputData = new ChooseOutputData(currentUser.getPreferences(), cities);
         choosePresenter.prepareSuccessView(chooseOutputData);
 
     }

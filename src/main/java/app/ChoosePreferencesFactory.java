@@ -4,7 +4,6 @@ import View.ChoosePreferencesView;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.calculate_score.CalculateScoreController;
 import interface_adapter.calculate_score.CalculateScorePresenter;
-import interface_adapter.calculate_score.CalculateScoreViewModel;
 import interface_adapter.calculate_score.ShowResultViewModel;
 import interface_adapter.choose_preferences.ChooseController;
 import interface_adapter.choose_preferences.ChoosePresenter;
@@ -24,16 +23,16 @@ public class ChoosePreferencesFactory {
 
 
 
-    public static ChoosePreferencesView create (ChooseController chooseController, ChooseViewModel chooseViewModel, CalculateScoreController calculateScoreController, CalculateScoreViewModel calculateScoreViewModel)
+    public static ChoosePreferencesView create (ChooseController chooseController, ChooseViewModel chooseViewModel, CalculateScoreController calculateScoreController, ShowResultViewModel showResultViewModel)
     {
 
-        return new ChoosePreferencesView(chooseController,chooseViewModel, calculateScoreController, calculateScoreViewModel);
+        return new ChoosePreferencesView(chooseController,chooseViewModel, calculateScoreController);
     }
 
-    public static ChooseController createUserSignUpUseCase (ViewManagerModel viewManagerModel, ChooseViewModel chooseViewModel, CalculateScoreViewModel calculateWeatherScoreViewModel, ChooseDataAccessInterface userDataAccessObject)
+    public static ChooseController createUserSignUpUseCase (ViewManagerModel viewManagerModel, ChooseViewModel chooseViewModel, ShowResultViewModel showResultViewModel, ChooseDataAccessInterface userDataAccessObject)
     {
         ChooseOutputBoundary chooseOutputBoundary = new ChoosePresenter(viewManagerModel, chooseViewModel,
-                calculateWeatherScoreViewModel);
+                showResultViewModel);
         ChoosePreferencesFactory userFactory = new ChoosePreferencesFactory();
         ChooseInputBoundary userChooseInteractor = new ChooseInteractor(userDataAccessObject, chooseOutputBoundary);
         return new ChooseController(userChooseInteractor);
@@ -41,8 +40,8 @@ public class ChoosePreferencesFactory {
     }
 
     public static CalculateScoreController createSignUpUseCase(ViewManagerModel viewManagerModel,
-                                                               CalculateScoreViewModel calculateScoreViewModel,
-                                                               ShowResultViewModel showResultViewModel, CalculateScoreDataAccessInterface userDataAccessObject)
+                                                               ShowResultViewModel showResultViewModel,
+                                                               CalculateScoreDataAccessInterface userDataAccessObject)
     {
         CalculateScoreOutputBoundary calculateScoreOutputBoundary = new CalculateScorePresenter(viewManagerModel, showResultViewModel);
         CalculateScoreInputBoundary userCalculateInteractor = new CalculateScoreInteractor(userDataAccessObject, calculateScoreOutputBoundary);

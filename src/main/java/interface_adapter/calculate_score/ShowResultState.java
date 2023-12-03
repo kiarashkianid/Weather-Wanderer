@@ -14,11 +14,6 @@ public class ShowResultState {
     private City city;
     private WeatherScore finalScore;
 
-    // Default constructor
-    public ShowResultState() {
-        // Empty constructor
-    }
-
     // Copy constructor for creating a new instance by copying another ShowResultState instance
     public ShowResultState(ShowResultState copy) {
         city = copy.city;
