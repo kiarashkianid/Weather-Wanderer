@@ -59,7 +59,7 @@ public class ResultPageView {
     /**
      * Method to initialize UI components, set layout, and add them to the view.
      */
-    private void initializeComponents(JFrame frame) {
+    public void initializeComponents(JFrame frame) {
         cityLabel = new JLabel();
         scoreLabel = new JLabel();
 
