@@ -22,7 +22,7 @@ public class ChoosePreferencesTest {
     // Attributes used to hold common classes that multiple tests will need.
     ChooseDataAccessInterface chooseDataAccessObject = new testDataAccessObject();
     ViewManagerModel viewManagerModel = new ViewManagerModel();
-    ChooseViewModel chooseViewModel = new ChooseViewModel("ChoosePreferences");
+    ChooseViewModel chooseViewModel = new ChooseViewModel();
     CalculateScoreViewModel calculateScoreViewModel = new CalculateScoreViewModel("ResultView");
     ChooseOutputBoundary choosePresenter = new ChoosePresenter(viewManagerModel, chooseViewModel,
             calculateScoreViewModel);
@@ -48,7 +48,7 @@ public class ChoosePreferencesTest {
         ArrayList<City> expectedCitiesList = new ArrayList<>();
         expectedCitiesList.add(new City("paris,france"));
         CalculateScoreState calculateScoreState = calculateScoreViewModel.getState();
-        ArrayList<City> obtainedCitiesList = calculateScoreState.getAddedCities();
+        ArrayList<City> obtainedCitiesList = calculateScoreState.getCities();
 
         assert Objects.equals(obtainedCitiesList.get(0).getName(), expectedCitiesList.get(0).getName());
 
@@ -121,7 +121,7 @@ public class ChoosePreferencesTest {
         assert calculateScoreState.getWeatherPref().getUserWindSpeedPreference() == 5;
         assert calculateScoreState.getWeatherPref().getUserWindSpeedPreferenceScore() == 6;
 
-        assert Objects.equals(calculateScoreState.getAddedCities().get(0).getName(), "rome,italy");
+        assert Objects.equals(calculateScoreState.getCities().get(0).getName(), "rome,italy");
 
         // Check the active view:
         assert Objects.equals(viewManagerModel.getActiveView(), "ResultView");
