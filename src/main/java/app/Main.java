@@ -1,22 +1,36 @@
 package app;
 
-import View.SignUpView;
-import View.ViewManager;
+import View.*;
+import data_access.FileUserDataAccessObject;
+import data_access.InMemoryUserDataAccessObject;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.calculate_score.CalculateScoreController;
+import interface_adapter.calculate_score.CalculateScorePresenter;
 import interface_adapter.calculate_score.CalculateScoreViewModel;
 import interface_adapter.calculate_score.ShowResultViewModel;
+import interface_adapter.choose_preferences.ChooseController;
 import interface_adapter.choose_preferences.ChooseViewModel;
 import interface_adapter.guest_user.GuestUserViewModel;
+import interface_adapter.login.LoginController;
+import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.sign_up.SignUpController;
 import interface_adapter.sign_up.SignUpViewModel;
+import use_case.CalculateScore.CalculateScoreInputBoundary;
+import use_case.CalculateScore.CalculateScoreInteractor;
+import use_case.CalculateScore.CalculateScoreOutputBoundary;
+import use_case.normaluser.Login.LoginInputBoundary;
+import use_case.normaluser.Login.LoginInteractor;
+import use_case.normaluser.Login.LoginOutputBoundary;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // Build the main program window, the main panel containing the
         // various cards, and the layout, and stitch them together.
 
@@ -42,11 +56,29 @@ public class Main {
         ShowResultViewModel calculateScoreViewModel = new ShowResultViewModel();
 
         // TODO: Initialize the DAOs
+        FileUserDataAccessObject fileUserDataAccessObject=new FileUserDataAccessObject();//TODO @Oscar how do u initialize the File user DAO,i dont understand User factory implementation
+        InMemoryUserDataAccessObject inMemoryUserDataAccessObject=new InMemoryUserDataAccessObject();
 
         // TODO: Initialize the different Views using UseCaseFactories for each of them as shown:
-        SignUpView signUpView = SignupUseCaseFactory.createUserSignupUseCase();
+        //Signup view
+        SignUpController signUpController=SignupUseCaseFactory.createUserSignupUseCase(viewManagerModel,signUpViewModel,chooseViewModel,fileUserDataAccessObject);
+        SignUpView signUpView = new SignUpView(signUpController,signUpViewModel,viewManagerModel);
         views.add(signUpView, signUpView.viewName);
-
+        //LoginView
+        LoginOutputBoundary loginOutputBoundary=new LoginPresenter(viewManagerModel,chooseViewModel,loginViewModel);
+        LoginInputBoundary loginInputBoundary =new LoginInteractor(inMemoryUserDataAccessObject,);//TODO: @Matthew pls initialize ur userlistGateway
+        LoginController loginController=new LoginController(loginInputBoundary);
+        LoginView loginView=new LoginView(loginController);
+        views.add(loginView,loginView.viewName);
+        //ChoosePreferencesView
+        ChooseController chooseController=ChoosePreferencesFactory.createUserSignUpUseCase(viewManagerModel,chooseViewModel,calculateScoreViewModel,inMemoryUserDataAccessObject);
+        CalculateScoreOutputBoundary calculateScoreOutputBoundary=new CalculateScorePresenter(viewManagerModel,calculateScoreViewModel);
+        CalculateScoreInputBoundary calculateScoreInputBoundary=new CalculateScoreInteractor(inMemoryUserDataAccessObject,calculateScoreOutputBoundary);
+        CalculateScoreController calculateScoreController=new CalculateScoreController(calculateScoreInputBoundary);
+        ChoosePreferencesView preferencesView=new ChoosePreferencesView(chooseController,chooseViewModel,calculateScoreController,calculateScoreViewModel);
+        ResultPageView resultPageView=new ResultPageView(calculateScoreViewModel);
+        views.add(preferencesView,preferencesView.viewName);
+        views.add(resultPageView,resultPageView.viewName);
 
         application.pack();;
         application.setVisible(false); //TODO: set to "true" once complete, then it should work (hopefully)
