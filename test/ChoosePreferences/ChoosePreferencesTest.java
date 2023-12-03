@@ -7,8 +7,6 @@ import entity.NormalUser;
 import entity.User;
 import entity.WeatherPref;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.calculate_score.CalculateScoreState;
-import interface_adapter.calculate_score.CalculateScoreViewModel;
 import interface_adapter.calculate_score.ShowResultState;
 import interface_adapter.calculate_score.ShowResultViewModel;
 import interface_adapter.choose_preferences.ChooseController;
