@@ -4,35 +4,49 @@ import interface_adapter.ViewManagerModel;
 import use_case.CalculateScore.CalculateScoreOutputBoundary;
 import use_case.CalculateScore.CalculateScoreOutputData;
 
+// Presenter class responsible for preparing views related to CalculateScore
 public class CalculateScorePresenter implements CalculateScoreOutputBoundary {
 
+    private final ShowResultViewModel showResultViewModel; // ViewModel for the ShowResult view
+    private ViewManagerModel viewManagerModel; // Model to manage views
 
-    private final ShowResultViewModel showResultViewModel;
-    private ViewManagerModel viewManagerModel;
-
-    public CalculateScorePresenter (ViewManagerModel viewManagerModel,
-                                    ShowResultViewModel showResultViewModel) {
-        this.viewManagerModel=viewManagerModel;
-        this.showResultViewModel=showResultViewModel;
+    // Constructor to initialize the CalculateScorePresenter
+    public CalculateScorePresenter(ViewManagerModel viewManagerModel,
+                                   ShowResultViewModel showResultViewModel) {
+        this.viewManagerModel = viewManagerModel;
+        this.showResultViewModel = showResultViewModel;
     }
 
+    // Method to prepare view on successful score calculation
     @Override
     public void prepareSuccessView(CalculateScoreOutputData cityWithHighestScore) {
-        //On success, switch to showResult view , take the outputdata and set states attribute
+        // Retrieve the state from the ShowResultViewModel
         ShowResultState resultState = showResultViewModel.getState();
+
+        // Set the final score attribute in the ShowResultState using the CalculateScoreOutputData
         resultState.setFinalScore(cityWithHighestScore);
+
+        // Update the state in the ShowResultViewModel
         this.showResultViewModel.setState(resultState);
+        // Trigger property change notification for potential view updates
         showResultViewModel.firePropertyChanged();
 
+        // Set the active view to showResult view in the ViewManagerModel
         viewManagerModel.setActiveView(showResultViewModel.getViewName());
+        // Trigger property change notification for potential view updates
         viewManagerModel.firePropertyChanged();
     }
 
+    // Method to prepare view on failed score calculation
     @Override
     public void prepareFailView(String error) {
-        ShowResultState calculateScoreState=showResultViewModel.getState();
-        calculateScoreState.setFinalScoreError(error);
-        showResultViewModel.firePropertyChanged();
+        // Retrieve the state from the ShowResultViewModel
+        ShowResultState calculateScoreState = showResultViewModel.getState();
 
+        // Set the final score error message in the state
+        calculateScoreState.setFinalScoreError(error);
+
+        // Trigger property change notification for potential view updates
+        showResultViewModel.firePropertyChanged();
     }
 }
