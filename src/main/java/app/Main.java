@@ -4,6 +4,8 @@ package app;
 import View.*;
 import data_access.FileUserDataAccessObject;
 import data_access.InMemoryUserDataAccessObject;
+import data_access.UserListGateway;
+import entity.CommonUserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.calculate_score.CalculateScoreController;
 import interface_adapter.calculate_score.CalculateScorePresenter;
@@ -55,9 +57,11 @@ public class Main {
         GuestUserViewModel guestUserViewModel = new GuestUserViewModel();
         ChooseViewModel chooseViewModel = new ChooseViewModel();
         ShowResultViewModel calculateScoreViewModel = new ShowResultViewModel();
+        CalculateScoreViewModel calculateScoreViewModel1 = new CalculateScoreViewModel("calculate");
 
         // TODO: Initialize the DAOs
-        FileUserDataAccessObject fileUserDataAccessObject=new FileUserDataAccessObject();//TODO @Oscar how do u initialize the File user DAO,i dont understand User factory implementation
+        CommonUserFactory commonUserFactory = new CommonUserFactory();
+        FileUserDataAccessObject fileUserDataAccessObject=new FileUserDataAccessObject(commonUserFactory);//TODO @Oscar how do u initialize the File user DAO,i dont understand User factory implementation
         InMemoryUserDataAccessObject inMemoryUserDataAccessObject=new InMemoryUserDataAccessObject();
 
         // TODO: Initialize the different Views using UseCaseFactories for each of them as shown:
@@ -67,22 +71,23 @@ public class Main {
         views.add(signUpView, signUpView.viewName);
         //LoginView
         LoginOutputBoundary loginOutputBoundary=new LoginPresenter(viewManagerModel,chooseViewModel,loginViewModel);
-        LoginInputBoundary loginInputBoundary =new LoginInteractor(inMemoryUserDataAccessObject,);//TODO: @Matthew pls initialize ur userlistGateway
+        UserListGateway userListGateway = new UserListGateway();
+        LoginInputBoundary loginInputBoundary =new LoginInteractor(inMemoryUserDataAccessObject, userListGateway, loginOutputBoundary );//TODO: @Matthew pls initialize ur userlistGateway
         LoginController loginController=new LoginController(loginInputBoundary);
         LoginView loginView=new LoginView(loginController);
         views.add(loginView,loginView.viewName);
         //ChoosePreferencesView
-        ChooseController chooseController=ChoosePreferencesFactory.createUserSignUpUseCase(viewManagerModel,chooseViewModel,calculateScoreViewModel,inMemoryUserDataAccessObject);
+        ChooseController chooseController=ChoosePreferencesFactory.createUserSignUpUseCase(viewManagerModel,chooseViewModel,calculateScoreViewModel1,inMemoryUserDataAccessObject);
         CalculateScoreOutputBoundary calculateScoreOutputBoundary=new CalculateScorePresenter(viewManagerModel,calculateScoreViewModel);
         CalculateScoreInputBoundary calculateScoreInputBoundary=new CalculateScoreInteractor(inMemoryUserDataAccessObject,calculateScoreOutputBoundary);
         CalculateScoreController calculateScoreController=new CalculateScoreController(calculateScoreInputBoundary);
-        ChoosePreferencesView preferencesView=new ChoosePreferencesView(chooseController,chooseViewModel,calculateScoreController,calculateScoreViewModel);
+        ChoosePreferencesView preferencesView=new ChoosePreferencesView(chooseController,chooseViewModel,calculateScoreController,calculateScoreViewModel1);
         ResultPageView resultPageView=new ResultPageView(calculateScoreViewModel);
         views.add(preferencesView,preferencesView.viewName);
         views.add(resultPageView,resultPageView.viewName);
 
         application.pack();;
-        application.setVisible(false); //TODO: set to "true" once complete, then it should work (hopefully)
+        application.setVisible(true); //TODO: set to "true" once complete, then it should work (hopefully)
 
     }
 }

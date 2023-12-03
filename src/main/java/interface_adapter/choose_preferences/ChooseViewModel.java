@@ -5,13 +5,13 @@ import interface_adapter.ViewModel;
 import java.beans.PropertyChangeListener;
 
 public class ChooseViewModel extends ViewModel {
-    private ChooseState state = new ChooseState();
+    private static ChooseState state = new ChooseState();
 
     public ChooseViewModel() {
         super("Choose Preferences");
     }
 
-    public ChooseState getState() {
+    public static ChooseState getState() {
         return state;
     }
 

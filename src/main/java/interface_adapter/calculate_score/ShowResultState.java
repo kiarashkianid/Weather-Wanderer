@@ -3,6 +3,9 @@ package interface_adapter.calculate_score;
 import entity.City;
 import entity.WeatherScore;
 import use_case.CalculateScore.CalculateScoreOutputData;
+import use_case.choosepreferences.ChooseOutputData;
+
+import java.util.ArrayList;
 
 /**
  * State class representing the result to be shown after calculating the score.
@@ -13,11 +16,13 @@ public class ShowResultState {
     // Fields to store city and final weather score
     private City city;
     private WeatherScore finalScore;
+    private ArrayList<City> cities;
 
     // Copy constructor for creating a new instance by copying another ShowResultState instance
-    public ShowResultState(ShowResultState copy) {
+    public ShowResultState(ShowResultState copy, ArrayList<City> cities) {
         city = copy.city;
         finalScore = copy.finalScore;
+        cities=copy.cities;
     }
 
     /**
@@ -53,5 +58,11 @@ public class ShowResultState {
     public void setFinalScoreError(String error) {
         // Method to set the error message related to the final score calculation if needed
         // Currently empty as there is no implementation for setting the error message in this example
+    }
+
+    public void setPreferences(ChooseOutputData chooseOutputData) {
+    }
+
+    public ArrayList<City> getCities() { return this.cities;
     }
 }

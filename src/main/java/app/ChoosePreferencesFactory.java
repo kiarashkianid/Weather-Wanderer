@@ -19,7 +19,9 @@ import use_case.choosepreferences.ChooseOutputBoundary;
 
 public class ChoosePreferencesFactory {
 
-    private ChoosePreferencesFactory(){}
+    public static ViewManagerModel viewManagerModel;
+
+    public ChoosePreferencesFactory(){}
 
 
 

@@ -17,7 +17,7 @@ public class GuestUserTest {
     GuestDataAccessInterface guestDataAccessObject = new testDataAccessObject();
     ViewManagerModel viewManagerModel = new ViewManagerModel();
     GuestUserViewModel guestUserViewModel = new GuestUserViewModel();
-    ChooseViewModel chooseViewModel = new ChooseViewModel("ChooseView");
+    ChooseViewModel chooseViewModel = new ChooseViewModel();
     GuestOutputBoundary guestPresenter = new GuestUserPresenter(viewManagerModel, guestUserViewModel, chooseViewModel);
     GuestInputBoundary guestInteractor = new GuestInteractor(guestDataAccessObject, guestPresenter);
     GuestUserController guestUserController = new GuestUserController(guestInteractor);

@@ -5,7 +5,8 @@ import app.ChoosePreferencesFactory;
 import entity.City;
 import entity.User;
 import entity.WeatherPref;
-import use_case.CalculateScore.WeatherDataHelper;
+import use_case.CalculateScore.CalculateWeatherScore;
+import use_case.CalculateScore.CalculateWeatherScoreAlgorithm;
 
 import java.util.ArrayList;
 import java.util.List;

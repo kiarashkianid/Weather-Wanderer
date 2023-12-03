@@ -13,9 +13,6 @@ public class SignUpViewModel extends ViewModel {
 
     public static final String SIGNUP_BUTTON_LABEL = "Sign up";
 
-    public static final String LOGIN_LABEL = "Login"; //user has the ability to click login which takes them straight to
-    // login page
-
     private SignUpState state = new SignUpState();
 
     public SignUpViewModel() {
