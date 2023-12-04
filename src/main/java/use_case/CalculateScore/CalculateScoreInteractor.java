@@ -1,10 +1,10 @@
 package use_case.CalculateScore;
 
-import entity.City;
-import entity.User;
-import entity.WeatherPref;
-import entity.WeatherScore;
+import data_access.UserListGateway;
+import entity.*;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 // Interactor responsible for executing the CalculateScore use case
@@ -86,6 +86,27 @@ public class CalculateScoreInteractor implements CalculateScoreInputBoundary {
                 cityWithHighestScore.getWeatherScore().weather_score <= 100) {
             // If highest score is within a valid range, prepare success view
             CalculateScoreOutputData calculateScoreOutputData = new CalculateScoreOutputData(cityWithHighestScore);
+
+            //SAVE
+
+                //(hopefully) this creates a txt file which stores every NormalUser's userid, name, and list of cities
+                String txtfile = "savedUsers.txt";
+                try {
+                    FileWriter fileWriter = new FileWriter(txtfile);
+                    for (NormalUser user: UserListGateway.getUserList())
+                    {
+                        fileWriter.write(Integer.toString(user.getUserID()) + "," + user.getUsername() + "," + user.getPassword());
+                        for (City city: user.getCityList())
+                        {
+                            fileWriter.write("," + city.getName());
+                        }
+                        fileWriter.write("\n");
+                    }
+                    fileWriter.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
             calculateScorePresenter.prepareSuccessView(calculateScoreOutputData);
         } else {
             // If highest score is not within valid range, prepare failure view

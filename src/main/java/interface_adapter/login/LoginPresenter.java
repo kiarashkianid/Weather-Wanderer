@@ -30,7 +30,7 @@ public class LoginPresenter implements LoginOutputBoundary {
 
         this.viewManagerModel.setActiveView(chooseViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
-        
+        System.out.println(viewManagerModel.getActiveView());
     }
     @Override
     public void prepareFailView(String error) {

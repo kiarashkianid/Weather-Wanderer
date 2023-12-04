@@ -111,6 +111,8 @@ public class InMemoryUserDataAccessObject implements GuestDataAccessInterface, C
         CommonUser user = CommonUserFactory.create(user_id, weatherPref, cityList);
         accounts.put(String.valueOf(user_id), user);
         this.savePreferences();
+
+
     }
 
     private void savePreferences() {

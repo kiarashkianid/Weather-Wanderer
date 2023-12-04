@@ -37,12 +37,10 @@ public class TestPage {
         CalculateScorePresenter calculateScorePresenter = new CalculateScorePresenter(viewManagerModel, showResultViewModel);
         CalculateScoreInteractor calculateScoreInteractor = new CalculateScoreInteractor(chooseDataAccessObject, calculateScorePresenter);
         CalculateScoreController calculateScoreController = new CalculateScoreController(calculateScoreInteractor);
-        ChoosePreferencesView choosePreferencesView = new ChoosePreferencesView(chooseController, chooseViewModel, calculateScoreController);
 
         chooseDataAccessObject.setCurr_User(normalUser);
 
-        new ChoosePreferencesView(chooseController, chooseViewModel, calculateScoreController); // Create and show the GuestPage
-
+        ChoosePreferencesView choosePreferencesView = new ChoosePreferencesView(chooseController, chooseViewModel, calculateScoreController);
 
     }
 }

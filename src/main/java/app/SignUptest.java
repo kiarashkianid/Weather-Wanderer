@@ -2,6 +2,7 @@ package app;
 
 import View.ChoosePreferencesView;
 import data_access.FileUserDataAccessObject;
+import data_access.UserListGateway;
 import entity.CommonUserFactory;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
@@ -37,7 +38,7 @@ public class SignUptest {
         ChooseViewModel chooseViewModel = new ChooseViewModel();
 
         FileUserDataAccessObject userDataAccessObject;
-        userDataAccessObject = new FileUserDataAccessObject(new CommonUserFactory());
+        userDataAccessObject = new FileUserDataAccessObject(new UserListGateway());
         SignUpController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, chooseViewModel, userDataAccessObject);
 
 

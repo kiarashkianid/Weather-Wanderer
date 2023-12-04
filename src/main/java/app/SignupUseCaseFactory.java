@@ -4,6 +4,7 @@ import entity.CommonUserFactory;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.choose_preferences.ChooseViewModel;
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.sign_up.SignUpController;
 import interface_adapter.sign_up.SignUpPresenter;
 import interface_adapter.sign_up.SignUpViewModel;
@@ -35,5 +36,17 @@ public class SignupUseCaseFactory {
                 userDataAccessObject, signupOutputBoundary, userFactory);
 
         return new SignUpController(userSignupInteractor);
+    }
+    public static SignUpView create(
+            ViewManagerModel viewManagerModel, ChooseViewModel chooseViewModel, SignUpViewModel signupViewModel, SignUpUserDataAccessInterface userDataAccessObject) {
+
+        try {
+            SignUpController signupController = createUserSignupUseCase(viewManagerModel, signupViewModel, chooseViewModel, userDataAccessObject);
+            return new SignUpView(signupController, signupViewModel, viewManagerModel);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Could not open user data file.");
+        }
+
+        return null;
     }
 }

@@ -19,7 +19,7 @@ public class ViewManagerModel {
     // This is what the Signup Presenter will call to let the ViewModel know
     // to alert the View
     public void firePropertyChanged() {
-        support.firePropertyChange("view", null, this.activeViewName);
+        support.firePropertyChange("view", "sign up", this.activeViewName);
         System.out.println("ViewManagerModel fire property changed executed");
     }
 

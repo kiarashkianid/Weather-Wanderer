@@ -74,9 +74,9 @@ public class CalculateScoreTest {
         CalculateScoreController calculateScoreController = new CalculateScoreController(calculateScoreInteractor);
         calculateScoreController.execute(testUser.getPreferences(), testUser.getCityList());
         showResultViewModel.setState(showResultState);
-        ResultPageView resultPageView=new ResultPageView(showResultViewModel);
-        JFrame frame=new JFrame();
-        resultPageView.initializeComponents(frame);
+        //ResultPageView resultPageView=new ResultPageView(showResultViewModel);
+        //JFrame frame=new JFrame();
+        //resultPageView.initializeComponents(frame);
     }
 
     public static void main(String[] args) {

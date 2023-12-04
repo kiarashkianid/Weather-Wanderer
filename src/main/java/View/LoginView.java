@@ -13,6 +13,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
+
     private final LoginViewModel loginViewModel;
     private final LoginController loginController;
 
@@ -30,12 +31,9 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         this.loginController = loginController;
         this.loginViewModel = loginViewModel;
         this.loginViewModel.addPropertyChangeListener(this);
-        frame = new JFrame(LoginViewModel.TITLE_LABEL);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(650, 400);
 
         layeredPane = new JLayeredPane();
-        frame.add(layeredPane);
+        //this.add(layeredPane);
 
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
@@ -83,13 +81,16 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
                 loginController.execute(username, password);
+                System.out.println("Login executed");
+                System.out.println(username);
+                System.out.println(password);
             }
         });
 
         // Load and set your GIF file as the background
         ImageIcon backgroundIcon = new ImageIcon("src/main/java/GUI/loginPageBackground.gif");
         backgroundLabel.setIcon(backgroundIcon);
-        backgroundLabel.setBounds(0, 0, frame.getWidth(), frame.getHeight());
+        backgroundLabel.setBounds(0, 0, layeredPane.getWidth(), layeredPane.getHeight());
         layeredPane.add(backgroundLabel, JLayeredPane.DEFAULT_LAYER);
 
         panel.setBounds(100, 100, 400, 200); // Set bounds for the panel
@@ -97,7 +98,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         layeredPane.add(panel, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(statusLabel, JLayeredPane.POPUP_LAYER);
 
-        frame.setVisible(true);
+        this.add(panel);
+        this.setVisible(true);
     }
 
     @Override

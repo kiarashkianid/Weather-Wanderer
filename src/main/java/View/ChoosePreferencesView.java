@@ -55,10 +55,6 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
         this.calculateScoreController = calculateScoreController;
         this.chooseViewModel.addPropertyChangeListener(this);
 
-        choosePreferencesFrame = new JFrame("Choose Preferences");
-        choosePreferencesFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        choosePreferencesFrame.setSize(800, 600);
-
         JPanel choosePreferencesPanel = new JPanel();
         choosePreferencesPanel.setLayout(new BorderLayout());
 
@@ -100,6 +96,7 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
                                     chooseViewModel.getState().getWindSpeedWeight());
 
                             calculateScoreController.execute(weatherPref, cityList);
+
                         }
                             else {
                                 JOptionPane.showMessageDialog(null, "Not all Preferences Have" +
@@ -178,8 +175,8 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
         choosePreferencesPanel.add(scorePanel, BorderLayout.CENTER);
         choosePreferencesPanel.add(calculatePanel, BorderLayout.SOUTH);
 
-        choosePreferencesFrame.add(choosePreferencesPanel);
-        choosePreferencesFrame.setVisible(true);
+        this.add(choosePreferencesPanel);
+        this.setVisible(true);
     }
 
     private void updateCitiesList() {

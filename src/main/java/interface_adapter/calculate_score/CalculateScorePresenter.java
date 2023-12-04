@@ -1,8 +1,11 @@
 package interface_adapter.calculate_score;
 
+import View.ResultPageView;
 import interface_adapter.ViewManagerModel;
 import use_case.CalculateScore.CalculateScoreOutputBoundary;
 import use_case.CalculateScore.CalculateScoreOutputData;
+
+import javax.swing.*;
 
 // Presenter class responsible for preparing views related to CalculateScore
 public class CalculateScorePresenter implements CalculateScoreOutputBoundary {
@@ -35,6 +38,9 @@ public class CalculateScorePresenter implements CalculateScoreOutputBoundary {
         viewManagerModel.setActiveView(showResultViewModel.getViewName());
         // Trigger property change notification for potential view updates
         viewManagerModel.firePropertyChanged();
+        ResultPageView resultPageView = new ResultPageView(showResultViewModel);
+        JFrame jFrame = new JFrame();
+        resultPageView.initializeComponents(jFrame);
     }
 
     // Method to prepare view on failed score calculation

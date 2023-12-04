@@ -38,12 +38,16 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface, Sign
     }
 
     private boolean isGuestUser = false;
+    private final UserListGateway userListGateway;
 
-    public FileUserDataAccessObject(UserFactory userFactory){}
+    public FileUserDataAccessObject(UserListGateway userListGateway){
+        this.userListGateway = userListGateway;
+    }
 
     @Override
     public void savePreferences(User currentUser, WeatherPref weatherPref, ArrayList<City> cityList){
     }
+
 
     public void readUser() {
         File txtfile = new File("savedUsers.txt");
@@ -58,7 +62,7 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface, Sign
                 while (parameters.hasNext()) {
                     normalUser.getCityList().add(new City(parameters.next()));
                 }
-                UserListGateway.getUserList().add(normalUser);
+                userListGateway.getUserList().add(normalUser);
             }
 
         } catch (FileNotFoundException e) {
@@ -68,11 +72,18 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface, Sign
 
     @Override
     public boolean existsByName(String username) {
+        for (NormalUser user: UserListGateway.getUserList()){
+            if (Objects.equals(user.getName(), username)) {
+                return true;
+            }
+        };
         return false;
     }
 
+
     @Override
     public void save(NormalUser user) {
-
+        userListGateway.save(user);
     }
+
 }

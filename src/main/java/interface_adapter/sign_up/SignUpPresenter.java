@@ -36,11 +36,12 @@ public class SignUpPresenter implements SignUpOutputBoundary {
     public void prepareSuccessView(SignUpOutputData user) {//switch to choose and also save in database
 
         ChooseState chooseState = chooseViewModel.getState();
+        System.out.println(chooseState);
         this.chooseViewModel.setState(chooseState);
         chooseViewModel.firePropertyChanged();
 
 
-        viewManagerModel.setActiveView(chooseViewModel.getViewName());
+        viewManagerModel.setActiveView("login"); //TODO:
         viewManagerModel.firePropertyChanged();
         System.out.println(viewManagerModel.getActiveView());
     }

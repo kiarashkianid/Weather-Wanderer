@@ -68,6 +68,7 @@ public class SignUpView extends JPanel implements ActionListener, PropertyChange
                                     currentState.getPassword(),
                                     currentState.getRepeatPassword()
                             );
+                            System.out.println("Signup Executed");
                         }
                     }
                 }
