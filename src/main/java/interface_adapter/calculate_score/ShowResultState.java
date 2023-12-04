@@ -18,6 +18,11 @@ public class ShowResultState {
     private WeatherScore finalScore;
     private ArrayList<City> cities;
 
+    // Default constructor
+    public ShowResultState() {
+        // Empty constructor
+    }
+
     // Copy constructor for creating a new instance by copying another ShowResultState instance
     public ShowResultState(ShowResultState copy, ArrayList<City> cities) {
         city = copy.city;

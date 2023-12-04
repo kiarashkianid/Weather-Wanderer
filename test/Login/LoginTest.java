@@ -33,7 +33,7 @@ public class LoginTest {
 
     ViewManagerModel viewManagerModel = new ViewManagerModel();
 
-    ChooseViewModel chooseViewModel = new ChooseViewModel("choose");
+    ChooseViewModel chooseViewModel = new ChooseViewModel();
 
     LoginViewModel loginViewModel = new LoginViewModel();
 

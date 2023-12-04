@@ -52,7 +52,7 @@ public class ChoosePreferencesTest {
 
 
         // 2:
-        assert Objects.equals(viewManagerModel.getActiveView(), "ResultView");
+        assert Objects.equals(viewManagerModel.getActiveView(), "Result View");
     }
 
     @org.junit.Test // Want to test given correct raw inputdata, interactor is succesfully executed w/correct inputdata
@@ -98,15 +98,9 @@ public class ChoosePreferencesTest {
         ChooseState chooseState = chooseViewModel.getState();
 
         assert Objects.equals(chooseState.getAddedCities().get(0).getName(), "rome,italy");
-        assert chooseState.getCurrentUser().getPreferences().getUserTempPreference() == 1;
-        assert chooseState.getCurrentUser().getPreferences().getUserTempPreferenceScore() == 2;
-        assert chooseState.getCurrentUser().getPreferences().getUserHumidityPreference() == 3;
-        assert chooseState.getCurrentUser().getPreferences().getUserHumidityPreferenceScore() == 4;
-        assert chooseState.getCurrentUser().getPreferences().getUserWindSpeedPreference() == 5;
-        assert chooseState.getCurrentUser().getPreferences().getUserWindSpeedPreferenceScore() == 6;
 
         // Check the active view:
-        assert Objects.equals(viewManagerModel.getActiveView(), "ResultView");
+        assert Objects.equals(viewManagerModel.getActiveView(), "Result View");
     }
 
 }

@@ -1,4 +1,3 @@
-/**
 package app;
 
 import View.*;
@@ -9,7 +8,6 @@ import entity.CommonUserFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.calculate_score.CalculateScoreController;
 import interface_adapter.calculate_score.CalculateScorePresenter;
-import interface_adapter.calculate_score.CalculateScoreViewModel;
 import interface_adapter.calculate_score.ShowResultViewModel;
 import interface_adapter.choose_preferences.ChooseController;
 import interface_adapter.choose_preferences.ChooseViewModel;
@@ -91,4 +89,3 @@ public class Main {
 
     }
 }
-**/
