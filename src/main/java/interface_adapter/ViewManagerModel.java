@@ -20,6 +20,7 @@ public class ViewManagerModel {
     // to alert the View
     public void firePropertyChanged() {
         support.firePropertyChange("view", null, this.activeViewName);
+        System.out.println("ViewManagerModel fire property changed executed");
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

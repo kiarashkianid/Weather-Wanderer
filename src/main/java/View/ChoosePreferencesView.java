@@ -8,6 +8,7 @@ import interface_adapter.calculate_score.ShowResultViewModel;
 import interface_adapter.choose_preferences.ChooseController;
 import interface_adapter.choose_preferences.ChooseState;
 import interface_adapter.choose_preferences.ChooseViewModel;
+import interface_adapter.login.LoginState;
 import use_case.CalculateScore.CalculateScoreInputData;
 import use_case.CalculateScore.CalculateScoreInteractor;
 
@@ -52,6 +53,7 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
         this.chooseController = chooseController;
         this.chooseViewModel = chooseViewModel;
         this.calculateScoreController = calculateScoreController;
+        this.chooseViewModel.addPropertyChangeListener(this);
 
         choosePreferencesFrame = new JFrame("Choose Preferences");
         choosePreferencesFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -188,6 +190,7 @@ public class ChoosePreferencesView extends JPanel implements ActionListener, Pro
         citiesPanel.revalidate();
         citiesPanel.repaint();
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

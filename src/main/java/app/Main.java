@@ -36,7 +36,7 @@ public class Main {
         // various cards, and the layout, and stitch them together.
 
         // The main application window.
-        JFrame application = new JFrame("Calculate WeatherScore");
+        JFrame application = new JFrame("Weather Wanderer");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
@@ -54,8 +54,7 @@ public class Main {
         LoginViewModel loginViewModel = new LoginViewModel();
         GuestUserViewModel guestUserViewModel = new GuestUserViewModel();
         ChooseViewModel chooseViewModel = new ChooseViewModel();
-        ShowResultViewModel calculateScoreViewModel = new ShowResultViewModel();
-        CalculateScoreViewModel calculateScoreViewModel1 = new CalculateScoreViewModel("calculate");
+        ShowResultViewModel showResultViewModel = new ShowResultViewModel();
 
         // TODO: Initialize the DAOs
         CommonUserFactory commonUserFactory = new CommonUserFactory();
@@ -63,24 +62,29 @@ public class Main {
         InMemoryUserDataAccessObject inMemoryUserDataAccessObject=new InMemoryUserDataAccessObject();
 
         // TODO: Initialize the different Views using UseCaseFactories for each of them as shown:
+        //Initial View
+        //InitialView initialView = new InitialView();
+
         //Signup view
         SignUpController signUpController=SignupUseCaseFactory.createUserSignupUseCase(viewManagerModel,signUpViewModel,chooseViewModel,fileUserDataAccessObject);
         SignUpView signUpView = new SignUpView(signUpController,signUpViewModel,viewManagerModel);
         views.add(signUpView, signUpView.viewName);
+
         //LoginView
         LoginOutputBoundary loginOutputBoundary=new LoginPresenter(viewManagerModel,chooseViewModel,loginViewModel);
         UserListGateway userListGateway = new UserListGateway();
         LoginInputBoundary loginInputBoundary =new LoginInteractor(inMemoryUserDataAccessObject, userListGateway, loginOutputBoundary );//TODO: @Matthew pls initialize ur userlistGateway
         LoginController loginController=new LoginController(loginInputBoundary);
-        LoginView loginView=new LoginView(loginController);
+        LoginView loginView=new LoginView(loginController, loginViewModel);
         views.add(loginView,loginView.viewName);
+
         //ChoosePreferencesView
-        ChooseController chooseController=ChoosePreferencesFactory.createUserSignUpUseCase(viewManagerModel,chooseViewModel,calculateScoreViewModel1,inMemoryUserDataAccessObject);
-        CalculateScoreOutputBoundary calculateScoreOutputBoundary=new CalculateScorePresenter(viewManagerModel,calculateScoreViewModel);
+        ChooseController chooseController=ChoosePreferencesFactory.createUserSignUpUseCase(viewManagerModel,chooseViewModel,showResultViewModel,inMemoryUserDataAccessObject);
+        CalculateScoreOutputBoundary calculateScoreOutputBoundary=new CalculateScorePresenter(viewManagerModel,showResultViewModel);
         CalculateScoreInputBoundary calculateScoreInputBoundary=new CalculateScoreInteractor(inMemoryUserDataAccessObject,calculateScoreOutputBoundary);
         CalculateScoreController calculateScoreController=new CalculateScoreController(calculateScoreInputBoundary);
-        ChoosePreferencesView preferencesView=new ChoosePreferencesView(chooseController,chooseViewModel,calculateScoreController,calculateScoreViewModel1);
-        ResultPageView resultPageView=new ResultPageView(calculateScoreViewModel);
+        ChoosePreferencesView preferencesView=new ChoosePreferencesView(chooseController,chooseViewModel,calculateScoreController);
+        ResultPageView resultPageView=new ResultPageView(showResultViewModel);
         views.add(preferencesView,preferencesView.viewName);
         views.add(resultPageView,resultPageView.viewName);
 

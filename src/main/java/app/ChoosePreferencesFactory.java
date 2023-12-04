@@ -25,7 +25,7 @@ public class ChoosePreferencesFactory {
 
 
 
-    public static ChoosePreferencesView create (ChooseController chooseController, ChooseViewModel chooseViewModel, CalculateScoreController calculateScoreController, ShowResultViewModel showResultViewModel)
+    public static ChoosePreferencesView create (ChooseController chooseController, ChooseViewModel chooseViewModel, CalculateScoreController calculateScoreController)
     {
 
         return new ChoosePreferencesView(chooseController,chooseViewModel, calculateScoreController);

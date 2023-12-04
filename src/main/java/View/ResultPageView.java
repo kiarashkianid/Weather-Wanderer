@@ -8,11 +8,15 @@ import use_case.CalculateScore.CalculateScoreOutputData;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * View class representing the result page that displays city and score information.
  */
-public class ResultPageView {
+public class ResultPageView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "Result View";
 
     // UI components for displaying the city and score
@@ -28,6 +32,8 @@ public class ResultPageView {
      */
     public ResultPageView(ShowResultViewModel resultViewModel) {
         this.resultViewModel = resultViewModel;
+        this.resultViewModel.addPropertyChangeListener(this);
+
         JFrame frame = new JFrame("Result Page");
 
         initializeComponents(frame); // Initialize UI components
@@ -91,7 +97,7 @@ public class ResultPageView {
         frame.setSize(400, 100); // Set a custom size for the frame
         frame.setLocationRelativeTo(null); // Center the frame on screen
     }
-
+/**
     public static void main(String[] args) {
         ShowResultState showResultState=new ShowResultState();
         City testCity=new City("toronto,Canada");
@@ -102,5 +108,15 @@ public class ResultPageView {
         ResultPageView resultPageView=new ResultPageView(showResultViewModel);
         JFrame frame=new JFrame();
         resultPageView.initializeComponents(frame);
+    }**/
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
     }
 }

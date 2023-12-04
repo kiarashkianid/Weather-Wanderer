@@ -24,7 +24,7 @@ public class ShowResultState {
     }
 
     // Copy constructor for creating a new instance by copying another ShowResultState instance
-    public ShowResultState(ShowResultState copy, ArrayList<City> cities) {
+    public ShowResultState(ShowResultState copy) {
         city = copy.city;
         finalScore = copy.finalScore;
         cities=copy.cities;

@@ -13,6 +13,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
+    private final LoginViewModel loginViewModel;
+    private final LoginController loginController;
 
     public final String viewName = "login";
     private JFrame frame;
@@ -24,7 +26,10 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     private JLabel statusLabel;
     private JLabel backgroundLabel; // Add a JLabel for the background
 
-    public LoginView(LoginController loginController) {
+    public LoginView(LoginController loginController, LoginViewModel loginViewModel) {
+        this.loginController = loginController;
+        this.loginViewModel = loginViewModel;
+        this.loginViewModel.addPropertyChangeListener(this);
         frame = new JFrame(LoginViewModel.TITLE_LABEL);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(650, 400);

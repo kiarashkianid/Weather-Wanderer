@@ -61,7 +61,7 @@ public class CalculateScoreTest {
         // Creating instances for the view manager, show result view model, and show result state
         ViewManagerModel viewManagerModel = new ViewManagerModel();
         ShowResultViewModel showResultViewModel = new ShowResultViewModel();
-        ShowResultState showResultState = new ShowResultState();
+        ShowResultState showResultState = showResultViewModel.getState();
         showResultViewModel.setState(showResultState);
 
         // Creating a success presenter instance

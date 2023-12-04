@@ -23,7 +23,7 @@ public class LoginTest {
     void successTest(){
 
         fileUserDataAccessObject.readUser();
-        LoginView loginView = new LoginView(loginController);
+        LoginView loginView = new LoginView(loginController, loginViewModel);
 
 
     }
