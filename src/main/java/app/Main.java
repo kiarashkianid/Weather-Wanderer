@@ -3,6 +3,7 @@ package app;
 import View.*;
 import data_access.FileUserDataAccessObject;
 import data_access.InMemoryUserDataAccessObject;
+import data_access.UserListGateway;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.calculate_score.CalculateScoreController;
 import interface_adapter.calculate_score.CalculateScorePresenter;
@@ -56,6 +57,7 @@ public class Main {
         ShowResultViewModel calculateScoreViewModel = new ShowResultViewModel();
 
         // TODO: Initialize the DAOs
+        UserListGateway userListGateway = new UserListGateway();
         FileUserDataAccessObject fileUserDataAccessObject=new FileUserDataAccessObject();//TODO @Oscar how do u initialize the File user DAO,i dont understand User factory implementation
         InMemoryUserDataAccessObject inMemoryUserDataAccessObject=new InMemoryUserDataAccessObject();
 
@@ -66,7 +68,7 @@ public class Main {
         views.add(signUpView, signUpView.viewName);
         //LoginView
         LoginOutputBoundary loginOutputBoundary=new LoginPresenter(viewManagerModel,chooseViewModel,loginViewModel);
-        LoginInputBoundary loginInputBoundary =new LoginInteractor(inMemoryUserDataAccessObject,);//TODO: @Matthew pls initialize ur userlistGateway
+        LoginInputBoundary loginInputBoundary =new LoginInteractor(inMemoryUserDataAccessObject,userListGateway,loginOutputBoundary);//TODO: @Matthew pls initialize ur userlistGateway
         LoginController loginController=new LoginController(loginInputBoundary);
         LoginView loginView=new LoginView(loginController);
         views.add(loginView,loginView.viewName);

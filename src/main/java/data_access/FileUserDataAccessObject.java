@@ -39,12 +39,34 @@ public class FileUserDataAccessObject implements ChooseDataAccessInterface, Sign
 
     private boolean isGuestUser = false;
 
-    public FileUserDataAccessObject(UserFactory userFactory){}
+    public FileUserDataAccessObject(UserFactory userFactory){
+
+    }
 
     @Override
     public void savePreferences(User currentUser, WeatherPref weatherPref, ArrayList<City> cityList){
     }
 
+    public void saveUser(){
+        //(hopefully) this creates a txt file which stores every NormalUser's userid, name, and list of cities
+        String txtfile = "savedUsers.txt";
+        try {
+            FileWriter fileWriter = new FileWriter(txtfile);
+            for (NormalUser user: UserListGateway.getUserList())
+            {
+                fileWriter.write(Integer.toString(user.getUserID()) + "," + user.getUsername() + "," + user.getPassword());
+                for (City city: user.getCityList())
+                {
+                    fileWriter.write("," + city.getName());
+                }
+                fileWriter.write("\n");
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
     public void readUser() {
         File txtfile = new File("savedUsers.txt");
         List<String> users = new ArrayList<>();
