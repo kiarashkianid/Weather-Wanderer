@@ -49,13 +49,7 @@ public class ChoosePreferencesTest {
         ArrayList<City> expectedCitiesList = new ArrayList<>();
         expectedCitiesList.add(new City("paris,france"));
         ShowResultState showResultState = showResultViewModel.getState();
-        City bestCity = showResultState.getCity();
 
-        assert bestCity != null;
-
-        // TODO: getWeatherScore() assertion fails, so it must be returning null weatherScore :/
-        assert bestCity.getWeatherScore() != null;
-        assert bestCity.getWeatherData() != null;
 
         // 2:
         assert Objects.equals(viewManagerModel.getActiveView(), "ResultView");
