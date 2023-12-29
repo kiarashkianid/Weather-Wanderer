@@ -1,4 +1,4 @@
-#City Weather Comparison Tool
+**City Weather Comparison Tool**
 
 **OpenWeather API:** [[https://www.statcan.gc.ca/en/microdata/api](https://openweathermap.org/)]
 
