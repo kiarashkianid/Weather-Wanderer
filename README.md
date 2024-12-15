@@ -4,7 +4,6 @@
 
 **OpenWeatherAPI Postman Link** https://www.postman.com/alex-postman-workspace/workspace/openweather-api/overview
 
-**Project Discord:** [ Discord ](https://discord.gg/Vnf28JWz)
 
 ## Problem Domain
 
